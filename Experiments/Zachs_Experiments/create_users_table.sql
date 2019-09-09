@@ -15,5 +15,7 @@ VALUES
 (3, 'Giovanni', 'Mejia', '1234 Butterfly Ave', 'Cupertino', 'CA'),
 (4, 'Rene', 'Chavez', '1234 Elephant St', 'Ames', 'IA');
 
+COMMIT;
+
 #Verify that records were inserted
 SELECT * FROM users_tab
