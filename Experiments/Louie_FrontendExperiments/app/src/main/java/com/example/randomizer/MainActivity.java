@@ -19,6 +19,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
 
+    Random rand = new Random();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,17 +41,17 @@ public class MainActivity extends AppCompatActivity{
         final TextView resultsTextView = (TextView) findViewById(R.id.resultsTextView);
         final SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
 
-        View.OnClickListener rollButtonClick = new View.OnClickListener() {
+
+        rollButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Random rand = new Random();
-                rand.nextInt(seekBar.getProgress());
-                String randString = rand.toString();
-                randString = (String)resultsTextView.getText();
+                System.out.println("Hello ");
 
-
+                int out = rand.nextInt(seekBar.getProgress());
+                System.out.println(out + " ");
+                resultsTextView.setText(out + " ");
             }
-        };
+            });
 
 
 
