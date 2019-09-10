@@ -11,8 +11,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button rollButton = (Button) findViewById(R.id.rollButton);
+        TextView resultsTextView = (TextView) findViewById(R.id.resultsTextView);
+        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
+
+        rollButton.setOnClickListener(this);
+
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        Random rand = new Random();
+        ranNum = rand.nextInt(seekBar.progress);
 
     }
 
