@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,21 +36,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         Button rollButton = (Button) findViewById(R.id.rollButton);
-        TextView resultsTextView = (TextView) findViewById(R.id.resultsTextView);
-        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
+        final TextView resultsTextView = (TextView) findViewById(R.id.resultsTextView);
+        final SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
 
-        rollButton.setOnClickListener(this);
+        View.OnClickListener rollButtonClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Random rand = new Random();
+                rand.nextInt(seekBar.getProgress());
+                String randString = rand.toString();
+                randString = (String)resultsTextView.getText();
+
+
+            }
+        };
 
 
 
     }
 
-    @Override
-    public void onClick(View view) {
-        Random rand = new Random();
-        ranNum = rand.nextInt(seekBar.progress);
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
