@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='Cy_Run_Login'
+rootProject.name='Rock-Paper-Scissors'

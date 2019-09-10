@@ -1,4 +1,4 @@
-package com.example.cy_run_login;
+package com.example.rock_paper_scissors;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.cy_run_login", appContext.getPackageName());
+        assertEquals("com.example.rock_paper_scissors", appContext.getPackageName());
     }
 }

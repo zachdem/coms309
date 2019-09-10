@@ -1,4 +1,4 @@
-package com.example.cy_run_login;
+package com.example.rock_paper_scissors;
 
 import org.junit.Test;
 
