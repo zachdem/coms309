@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity{
         rollButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                System.out.println("Hello ");
+                //System.out.println("Hello ");
 
                 int out = rand.nextInt(seekBar.getProgress());
-                System.out.println(out + " ");
+                //System.out.println(out + " ");
                 resultsTextView.setText(out + " ");
             }
             });
