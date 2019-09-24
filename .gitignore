@@ -1,6 +1,39 @@
 # Created by https://www.gitignore.io/api/java,gradle,android,androidstudio
 # Edit at https://www.gitignore.io/?templates=java,gradle,android,androidstudio
 
+# SpringBoot Project .gitignore
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
 ### Android ###
 # Built application files
 *.apk
