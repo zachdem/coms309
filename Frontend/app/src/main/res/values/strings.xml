@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Cyrun</string>
+    <string name="app_name">CyRUN</string>
+    <string name="login">Login</string>
+    <string name="enterUserName">Enter your username</string>
+    <string name="enterPassword">Enter your password</string>
+
 </resources>
