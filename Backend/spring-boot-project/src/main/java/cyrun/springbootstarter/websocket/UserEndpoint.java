@@ -10,8 +10,11 @@ import javax.websocket.Session;
 //import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import org.springframework.stereotype.Component;
+
 
 @ServerEndpoint("/user")
+@Component
 public class UserEndpoint {
 	
 	
@@ -23,8 +26,8 @@ public class UserEndpoint {
 	}
 
 	@OnMessage
-	public void onMessage(Session session) throws IOException {
-		//return message + " (from your server)";
+	public String onMessage(Session session, String message) throws IOException {
+		return message + " (from your server)";
 	}
 
 	@OnClose

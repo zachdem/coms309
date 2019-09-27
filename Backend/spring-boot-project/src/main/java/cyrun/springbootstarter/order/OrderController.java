@@ -22,9 +22,12 @@ public class OrderController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value="/orders")
-	public void addTopic(@RequestBody Order order)
+	public String addTopic(@RequestBody Order order)
 	{
 		orderService.addOrder(order);
+		
+		return "Successful Login";
+		
 	}
 
 }
