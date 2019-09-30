@@ -1,18 +1,10 @@
 package com.example.cyrun.ui.login;
 
 import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -22,9 +14,27 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.cyrun.R;
-import com.example.cyrun.ui.login.LoginViewModel;
-import com.example.cyrun.ui.login.LoginViewModelFactory;
+import com.example.cyrun.app.AppController;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -128,4 +138,62 @@ public class LoginActivity extends AppCompatActivity {
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
+
+    final TextView textView = (TextView) findViewById(R.id.text);
+
+    RequestQueue queue = Volley.newRequestQueue(this);
+    String url = "coms-309-ks-6.misc.iastate.edu:8080/userlogin";
+
+    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, new Response.Listener<JSONObject>() {
+        @Override
+        public void onResponse(JSONObject response) {
+            Log.d(TAG, response.toString());
+        }
+    }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            VolleyLog.d(TAG,"Error: "+ error.getMessage());
+        }
+    }){
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String>params =new HashMap<String, String>();
+            params.put("name","Androidhive");
+            params.put("email","abc@androidhive.info");
+            params.put("password","password123");
+            return params;
+        }
+    };
+
+    AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+
+
+
+    ////start of JSON code
+//
+//    final TextView textView = (TextView) findViewById(R.id.text);
+//// ...
+//
+//    // Instantiate the RequestQueue.
+//
+//    RequestQueue queue = Volley.newRequestQueue(this);
+//    String url ="";
+//
+//    // Request a string response from the provided URL.
+//    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//            new Response.Listener<String>() {
+//                @Override
+//                public void onResponse(String response) {
+//                    // Display the first 500 characters of the response string.
+//                    textView.setText("Response is: "+ response.substring(0,500));
+//                }
+//            }, new Response.ErrorListener() {
+//        @Override
+//        public void onErrorResponse(VolleyError error) {
+//            textView.setText("That didn't work!");
+//        }
+//    });
+//
+//    // Add the request to the RequestQueue.
+//    //queue.add(stringRequest);
 }

@@ -1,10 +1,13 @@
 package com.example.cyrun.app;
+
 import android.app.Application;
 import android.text.TextUtils;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.example.cyrun.net_utils.LruBitmapCache;
 
 
 public class AppController extends Application {
