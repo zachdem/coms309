@@ -7,4 +7,12 @@
     <string name="CyRUN">CyRUN</string>
     <string name="Password">Password</string>
 
+    <string name="Clydes">Clydes</string>
+    <string name="Convos">Convos</string>
+    <string name="UDCC">UDCC</string>
+    <string name="Favorite_picks">Favorites Picks @ ISU</string>
+    <string name="HomePage">CyRUN HomePage</string>
+
+
+
 </resources>

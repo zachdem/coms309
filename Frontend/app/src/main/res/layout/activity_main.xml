@@ -37,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cyRUN" />
+        app:srcCompat="@drawable/cyrun" />
 
     <EditText
         android:id="@+id/Net-ID"
@@ -73,39 +73,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="511dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="172dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:text="@string/Login"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/nam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="606dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="106dp"
-        android:fontFamily="sans-serif"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/Not_a_mem_message" />
-
     <TextView
         android:id="@+id/CyRUN"
         android:layout_width="wrap_content"
@@ -116,7 +83,7 @@
         android:layout_marginBottom="381dp"
         android:background="@android:color/white"
         android:fontFamily="sans-serif-black"
-        android:text="TextView"
+        android:text="@string/CyRUN"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -124,4 +91,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/CyRUN" />
+
+    <Button
+        android:id="@+id/Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="517dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="166dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="@string/Login"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="609dp"
+        android:layout_marginEnd="158dp"
+        android:layout_marginBottom="103dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/Not_a_mem_message"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
