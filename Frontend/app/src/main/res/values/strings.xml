@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">homepage</string>
+    <string name="Net_ID">Net-ID</string>
+    <string name="Login">Login</string>
+    <string name="Sign_Up">SignUp</string>
+    <string name="Not_a_mem_message">Not a Member?</string>
+    <string name="CyRUN">CyRUN</string>
+    <string name="Password">Password</string>
+
+</resources>
