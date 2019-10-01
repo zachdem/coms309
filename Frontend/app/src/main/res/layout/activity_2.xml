@@ -16,7 +16,7 @@
         android:layout_marginEnd="259dp"
         android:layout_marginBottom="365dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/Favorite_picks"
+        android:text="@string/Favorite_picks_at_Clydes"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,7 +24,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/Favorite_picks" />
+        tools:text="@string/Favorite_picks_at_Clydes" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="397dp"
+        android:layout_marginEnd="306dp"
+        android:layout_marginBottom="286dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="@string/Cheese_Burger"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button16"
@@ -32,10 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
         android:layout_marginTop="397dp"
-        android:layout_marginEnd="171dp"
+        android:layout_marginEnd="141dp"
         android:layout_marginBottom="286dp"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:text="@string/Convos"
+        android:text="@string/Pizza"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,27 +67,12 @@
         android:layout_marginEnd="31dp"
         android:layout_marginBottom="286dp"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:text="@string/UDCC"
+        android:text="@string/Pasta"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="172dp"
-        android:layout_height="176dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="179dp"
-        android:layout_marginBottom="427dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cyrun" />
 
     <TextView
         android:id="@+id/textView3"
@@ -82,7 +83,7 @@
         android:layout_marginEnd="261dp"
         android:layout_marginBottom="650dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/HomePage"
+        android:text="@string/Clydes_HomePage"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold|italic"
@@ -92,20 +93,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/Button"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="399dp"
-        android:layout_marginEnd="307dp"
-        android:layout_marginBottom="284dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:text="@string/Clydes"
-        android:textColor="@color/colorAccent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="117dp"
+        android:layout_marginEnd="111dp"
+        android:layout_marginBottom="431dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dininghall" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
