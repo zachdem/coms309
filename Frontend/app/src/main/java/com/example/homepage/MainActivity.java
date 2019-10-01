@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button loginButton;
 
-    private String urlJsonObj = "https://coms-309-ks-6.misc.iastate.edu:8080";
+    private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/userlogin";
     private static String TAG = MainActivity.class.getSimpleName();
     String tag_json_obj = "json_obj_req";
 
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();
                 System.out.println("Hello");
-                params.put("", "");
-                        params.put("netid", "test_netid");
+                params.put("user_hid", "1");
+                params.put("netid", "test_netid");
                 params.put("password", "test_password");
                 return params;
             }
