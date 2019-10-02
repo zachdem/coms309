@@ -27,7 +27,7 @@
         tools:text="@string/Favorite_picks" />
 
     <Button
-        android:id="@+id/button16"
+        android:id="@+id/Convos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button17"
+        android:id="@+id/udcc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="292dp"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/Clydes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -103,6 +103,20 @@
         android:backgroundTint="@color/colorPrimaryDark"
         android:text="@string/Clydes"
         android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtResponse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="580dp"
+        android:layout_marginEnd="212dp"
+        android:layout_marginBottom="132dp"
+        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
