@@ -20,7 +20,7 @@ public class Acitivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_acitivity2);
 
 
-        Button = findViewById(R.id.Button);
+        Button = findViewById(R.id.login);
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
