@@ -59,7 +59,7 @@ public class Acitivity2 extends AppCompatActivity {
 
             }
         });
-        txtResponse  =  findViewById(R.id.txtResponse);
+        txtResponse = findViewById(R.id.txtResponse);
 
 
 
