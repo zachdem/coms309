@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginButton = findViewById(R.id.Clydes);
+        loginButton = findViewById(R.id.Login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openActivity2() {
-        Intent intent = new Intent(this, Acitivity2.class);
+        Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
     }
 }
