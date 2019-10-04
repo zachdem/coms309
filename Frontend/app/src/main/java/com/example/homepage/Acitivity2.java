@@ -2,22 +2,19 @@ package com.example.homepage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.homepage.app.AppController;
+import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -71,52 +68,52 @@ public class Acitivity2 extends AppCompatActivity {
      * Method to make json object request where json response starts wtih {
      * */
     private void makeJsonObjectRequest() {
+        try {
+            System.out.println("hello");
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, urlJsonObj, null, new Response.Listener<JSONObject>() {
-        @Override
-            public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
-
-                try {
-                    // Parsing json object response
-                    // response will be a json object
-                    String order_id = response.getString("1");
-                    String customer_id = response.getString("1");
-                    String runner_id = response.getString("1");
-                    String pending_order = response.getString("Yes");
-                    String item_id = response.getString("mobile");
-                    String final_order = response.getString("No");
-                    String delivery_address = response.getString("123 Cyclone Ave");
-
-                    jsonResponse = "";
-                    jsonResponse += "order_id:" + order_id + "\n\n";
-                    jsonResponse += "customer_id: " + customer_id + "\n\n";
-                    jsonResponse += "runner_id: " + runner_id + "\n\n";
-                    jsonResponse += "pending order" + pending_order + "\n\n";
-                    jsonResponse += "item_id:" + item_id + "\n\n";
-                    jsonResponse += "Delivery Address" + delivery_address + "\n\n";
-                    jsonResponse += "Order Finalized" + final_order + "\n\n";
-                    txtResponse.setText(jsonResponse);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),
-                            "Error: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-                // hide the progress dialog
-            }
-        });
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(jsonObjReq);
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            // Initialize a new JsonObjectRequest instance
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urlJsonObj, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            // Do something with response
+                            //mTextView.setText(response.toString());
+                            // Process the JSON
+                            try {
+                                System.out.println("Test");
+                                //System.out.println("Test");
+                                // Get the JSON array
+                                //JSONArray array = response.getJSONArray("students");
+//                            // Loop through the array elements
+//                            for(int i=0;i<array.length();i++){
+//                                // Get current json object
+//                                JSONObject student = array.getJSONObject(i);
+//
+//                                // Get the current student (json object) data
+//                                String firstName = student.getString("firstname");
+//                                String lastName = student.getString("lastname");
+//                                String age = student.getString("age");
+//
+//                                // Display the formatted json data in text view
+//                                mTextView.append(firstName +" " + lastName +"\nage : " + age);
+//                                mTextView.append("\n\n");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener(){
+                        @Override
+                        public void onErrorResponse(VolleyError error){
+                            // Do something when error occurred
+                            //System.out.println("Test");
+                        }
+                    }
+            );
+            requestQueue.add(jsonObjectRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
