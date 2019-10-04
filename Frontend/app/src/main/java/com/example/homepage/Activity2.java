@@ -18,7 +18,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 
 
-public class Acitivity2 extends AppCompatActivity {
+public class Activity2 extends AppCompatActivity {
 
 
 
@@ -51,12 +51,12 @@ public class Acitivity2 extends AppCompatActivity {
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity3();
+                //openActivity3();
                 makeJsonObjectRequest();
 
             }
         });
-        txtResponse = findViewById(R.id.txtResponse);
+        txtResponse  =  findViewById(R.id.txtResponse);
 
 
 
@@ -68,23 +68,25 @@ public class Acitivity2 extends AppCompatActivity {
      * Method to make json object request where json response starts wtih {
      * */
     private void makeJsonObjectRequest() {
-        try {
-            System.out.println("hello");
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            // Initialize a new JsonObjectRequest instance
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urlJsonObj, null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            // Do something with response
-                            //mTextView.setText(response.toString());
-                            // Process the JSON
-                            try {
-                                System.out.println("Test");
-                                //System.out.println("Test");
-                                // Get the JSON array
-                                //JSONArray array = response.getJSONArray("students");
+        // Initialize a new JsonObjectRequest instance
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                urlJsonObj,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Do something with response
+                        //mTextView.setText(response.toString());
+
+                        // Process the JSON
+                        try {
+                            //System.out.println("Test");
+                            // Get the JSON array
+                            //JSONArray array = response.getJSONArray("students");
+
 //                            // Loop through the array elements
 //                            for(int i=0;i<array.length();i++){
 //                                // Get current json object
@@ -98,23 +100,21 @@ public class Acitivity2 extends AppCompatActivity {
 //                                // Display the formatted json data in text view
 //                                mTextView.append(firstName +" " + lastName +"\nage : " + age);
 //                                mTextView.append("\n\n");
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    },
-                    new Response.ErrorListener(){
-                        @Override
-                        public void onErrorResponse(VolleyError error){
-                            // Do something when error occurred
-                            //System.out.println("Test");
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
-            );
-            requestQueue.add(jsonObjectRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        // Do something when error occurred
+                        //System.out.println("Test");
+                    }
+                }
+        );
+
+        // Add JsonObjectRequest to the RequestQueue
+        requestQueue.add(jsonObjectRequest);
     }
-}
 }
