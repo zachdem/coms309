@@ -9,14 +9,14 @@ stages:
 
 # tags: "shell" should match with the tag name provided to runner, for spring runner should execute in shell.
 # Notice that in petclinic project, the spring project is in root of master, if yours is in folder then cd to that folder.
-#maven-build:
-#  stage: mavenbuild
-#  tags:
-#    - springboot_tag
-#  script:
-#    - cd Backend/spring-boot-project
-#    - mvn package -B
-#  
+maven-build:
+  stage: mavenbuild
+  tags:
+    - springboot_tag
+  script:
+    - cd Backend/spring-boot-project
+    - mvn package -B
+  
 ## artifacts are created when job executes successfully, and can be manually downloaded from GitLab GUI.
 ## artifacts are not mandatory, buts it good practice, in case auto deploy fails, you can manually download the jar.
 #maven-test:
