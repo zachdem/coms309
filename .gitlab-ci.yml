@@ -12,7 +12,7 @@ stages:
 maven-build:
   stage: mavenbuild
   tags:
-    - shell
+    - springboot_tag
   script:
     - cd Backend/spring-boot-project
     - mvn package -B
@@ -22,7 +22,7 @@ maven-build:
 maven-test:
   stage: maventest
   tags:
-    - shell
+    - springboot_tag
   script:
     - cd Backend/spring-boot-project
     - mvn test
@@ -35,7 +35,7 @@ maven-test:
 autoDeploy:
   stage: autodeploy
   tags:
-   - shell
+   - springboot_tag
   script:
     - cd Backend/spring-boot-project
     - mvn package
