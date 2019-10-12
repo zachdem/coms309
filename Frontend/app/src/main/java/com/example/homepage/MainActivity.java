@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button loginButton, signUpButton;
     private EditText netidEditText, passwordEditText;
+    private TextView textview;
 
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/userlogin";
 
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.sign_up_button);
         netidEditText = findViewById(R.id.net_id_etext);
         passwordEditText = findViewById(R.id.password_etext);
+        //textview = findViewById(R.id.textView);
+        //textview.append("Incorrect netid/password!");
+
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -50,25 +55,29 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
             // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
 
-                verifyCredentials();
+                verifyCredentials(netidEditText.getText().toString(), passwordEditText.getText().toString());
 
 
             }
         });
     }
 
-    private void verifyCredentials() {
+    private void verifyCredentials(String netId, String password) {
         try {
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("user_id", 1);
-            jsonBody.put("netid", "test_netid");
-            jsonBody.put("password", "test_password");
+            jsonBody.put("netid", netId);
+            jsonBody.put("password", password);
             final String requestBody = jsonBody.toString();
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             StringRequest postRequest = new StringRequest(Request.Method.POST, urlJsonObj, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                         System.out.println(response);
+                       if(response.equals("success"))
+                       {
+                            openActivity2();
+                       }
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -90,18 +99,6 @@ public class MainActivity extends AppCompatActivity {
                         VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
                         return null;
                     }
-                }
-
-
-                @Override
-                protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                    String responseString = "";
-                    if (response != null) {
-                        responseString = String.valueOf(response.statusCode);
-                    }
-                    String s = new String(response.data);
-                    System.out.println(s);
-                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
                 }
             };
             requestQueue.add(postRequest);
