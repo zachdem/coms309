@@ -17,8 +17,9 @@
         android:name="com.example.homepage.app.AppController"
         android:usesCleartextTraffic="true"
         >
-        <activity android:name=".Activity3"></activity>
-        <activity android:name=".Activity2" />
+        <activity android:name=".ClydesMenuActivity"></activity>
+        <activity android:name=".UserHomeActivity" />
+        <activity android:name=".LocationsMenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

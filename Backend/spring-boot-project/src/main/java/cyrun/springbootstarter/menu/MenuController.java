@@ -10,14 +10,23 @@ import java.util.List;
 
 @RestController
 public class MenuController {
-	
+
 	@Autowired
 	private MenuRepository menuRepository;
-
-	@RequestMapping(method=RequestMethod.POST, value="/menu")
-	public List<Item>  getMenu(@RequestBody Location location){
 	
+	@Autowired
+	private LocationRepository locationRepository;
+
+	@RequestMapping(method = RequestMethod.POST, value = "/menu")
+	public List<Item> getMenu(@RequestBody Location location) {
+
 		return menuRepository.getMenuList(location.getLocation_name());
 
-}
+	}
+	
+	
+	@RequestMapping(method=RequestMethod.GET, value="/locations")
+	public List<Location> getMenu(){
+		return locationRepository.getAllLocations();
+	}
 }

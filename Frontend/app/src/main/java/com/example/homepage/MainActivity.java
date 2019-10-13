@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,13 +17,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.android.volley.toolbox.HttpHeaderParser;
 
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(response);
                        if(response.equals("success"))
                        {
-                            openActivity2();
+                            openHomePageActivity();
                        }
                 }
             }, new Response.ErrorListener() {
@@ -109,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void openActivity2() {
-        Intent intent = new Intent(this, Activity2.class);
+    public void openHomePageActivity() {
+        Intent intent = new Intent(this, UserHomeActivity.class);
         startActivity(intent);
     }
 }

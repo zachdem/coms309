@@ -96,19 +96,17 @@
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="517dp"
-        android:layout_marginEnd="137dp"
-        android:layout_marginBottom="166dp"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="546dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="137dp"
         android:backgroundTint="@color/colorPrimaryDark"
         android:text="@string/Login"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/not_member_text"
