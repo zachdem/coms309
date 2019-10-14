@@ -22,7 +22,7 @@
     <string name="First_Name">First Name</string>
     <string name="Last_Name">Last Name</string>
     <string name="User_Name">User Name</string>
-    <string name="Password">Password</string>
+    <string name="Password1">Password</string>
     <string name="ISU_ID">ISU_ID</string>
     <string name="Routing_Number">Routing Number</string>
     <string name="Account_Number">Account Number</string>

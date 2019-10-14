@@ -44,7 +44,7 @@ public class Activity2 extends AppCompatActivity {
         Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //openActivity3();
+                openActivity3();
                 makeJsonArrayRequest();
 
             }
