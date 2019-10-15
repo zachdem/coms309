@@ -58,11 +58,11 @@ android-build:
   tags:
    - android_tag
   script:
-    - cd Android_test
+    - cd Frontend
     - ./gradlew assemble
   artifacts:
     paths:
-    - Android_test/app/build/outputs/
+    - Frontend/app/build/outputs/
     
 ## To run Android unit tests.   
 #unitTests:
