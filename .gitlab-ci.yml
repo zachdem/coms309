@@ -54,7 +54,7 @@ android-build:
   before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
     - pwd
-    - chmod +x ./Android_test/gradlew
+    - chmod +x ./Frontend/gradlew
   tags:
    - android_tag
   script:
