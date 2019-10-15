@@ -59,6 +59,7 @@ android-build:
    - android_tag
   script:
     - cd Frontend
+    - echo $JAVA_HOME
     - ./gradlew assemble
   artifacts:
     paths:
