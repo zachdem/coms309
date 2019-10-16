@@ -54,6 +54,8 @@ android-build:
   before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
     - pwd
+    - echo $JAVA_HOME
+    - echo $USER
     - chmod +x ./Frontend/gradlew
   tags:
    - android_tag
@@ -61,7 +63,6 @@ android-build:
     - cd Frontend
     - echo $JAVA_HOME
     - echo $USER
-    - which java
     - ./gradlew assemble
   artifacts:
     paths:
