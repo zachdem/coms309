@@ -60,6 +60,7 @@ android-build:
   script:
     - cd Frontend
     - echo $JAVA_HOME
+    - echo $USER
     - ./gradlew assemble
   artifacts:
     paths:
