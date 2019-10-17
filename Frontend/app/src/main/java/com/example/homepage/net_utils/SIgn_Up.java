@@ -1,61 +1,41 @@
-package com.example.homepage;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+package com.example.homepage.net_utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Bundle;
+import android.widget.TextView;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.homepage.R;
 import com.example.homepage.app.AppController;
 
 import org.json.JSONArray;
+import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class SIgn_Up extends AppCompatActivity {
 
 
-public class UserHomeActivity extends AppCompatActivity {
 
-    private Button orderButton;
+    private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/Signup";
 
+    private TextView txtResponse;
 
-    // URL
-    //private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/orders";
-
-    //private TextView txtResponse;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_home);
-        orderButton = findViewById(R.id.order_button);
-
-        orderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                makeJsonArrayRequest();
-                openLocationsActivity();
-
-            }
-        });
-
-    }
-
-    public void openLocationsActivity() {
-        Intent intent = new Intent(this, LocationsMenuActivity.class);
-        startActivity(intent);
-    }
 
 
     /**
      * Making the JSON Array request
      */
-  /*  private void makeJsonArrayRequest(){
+    private void makeJsonArrayRequest(){
         // making the new object
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonObj, null, new Response.Listener<JSONArray>() {
             @Override
@@ -72,6 +52,10 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         });
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
-    }*/
-
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign__up);
+    }
 }

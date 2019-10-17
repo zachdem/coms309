@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.homepage.net_utils.SIgn_Up;
 
 import org.json.JSONObject;
 
@@ -28,9 +29,13 @@ public class MainActivity extends AppCompatActivity {
     private EditText netidEditText, passwordEditText;
     private TextView textview;
 
+    private Button SignupButton;
+
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/userlogin";
 
     private static String TAG = MainActivity.class.getSimpleName();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
                 verifyCredentials(netidEditText.getText().toString(), passwordEditText.getText().toString());
 
 
+            }
+        });
+
+        SignupButton = findViewById(R.id.SignUp);
+        SignupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSignupPage();
+                makeStringObjectRequest();
             }
         });
     }
@@ -107,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openHomePageActivity() {
         Intent intent = new Intent(this, UserHomeActivity.class);
+        startActivity(intent);
+    }
+
+    public void openSignupPage() {
+        Intent intent = new Intent(this, SIgn_Up.class);
         startActivity(intent);
     }
 }
