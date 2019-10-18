@@ -17,7 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.homepage.net_utils.SIgn_Up;
 
 import org.json.JSONObject;
 
@@ -29,12 +28,10 @@ public class MainActivity extends AppCompatActivity {
     private EditText netidEditText, passwordEditText;
     private TextView textview;
 
-    private Button SignupButton;
 
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/userlogin";
 
     private static String TAG = MainActivity.class.getSimpleName();
-
 
 
     @Override
@@ -50,24 +47,18 @@ public class MainActivity extends AppCompatActivity {
         //textview.append("Incorrect netid/password!");
 
 
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
-
+                // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
                 verifyCredentials(netidEditText.getText().toString(), passwordEditText.getText().toString());
-
-
             }
         });
 
-        SignupButton = findViewById(R.id.SignUp);
-        SignupButton.setOnClickListener(new View.OnClickListener() {
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openSignupPage();
-                makeStringObjectRequest();
             }
         });
     }
@@ -75,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     private void verifyCredentials(String netId, String password) {
         try {
             JSONObject jsonBody = new JSONObject();
-            jsonBody.put("user_id", 1);
             jsonBody.put("netid", netId);
             jsonBody.put("password", password);
             final String requestBody = jsonBody.toString();
@@ -83,18 +73,17 @@ public class MainActivity extends AppCompatActivity {
             StringRequest postRequest = new StringRequest(Request.Method.POST, urlJsonObj, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                        System.out.println(response);
-                       if(response.equals("success"))
-                       {
-                            openHomePageActivity();
-                       }
+                    System.out.println(response);
+                    if (response.equals("success")) {
+                        openHomePageActivity();
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     System.out.println(error);
                 }
-            }){
+            }) {
 
                 @Override
                 public String getBodyContentType() {
@@ -125,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openSignupPage() {
-        Intent intent = new Intent(this, SIgn_Up.class);
+        Intent intent = new Intent(this, UserSignUpActivity.class);
         startActivity(intent);
     }
 }
