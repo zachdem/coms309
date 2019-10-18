@@ -38,7 +38,6 @@ public class UserHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                makeJsonArrayRequest();
                 openLocationsActivity();
 
             }
