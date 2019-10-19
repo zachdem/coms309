@@ -11,18 +11,15 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/userlogin")
 	public String validateUser(@RequestBody User user) {
-		User found_user = userRepository.findByNetid(user.getNetid());
-
-		if (found_user != null) {
-			if (found_user.getPassword().equals(user.getPassword())) {
-				return "success";
-			}
-		}
-
-		return "fail";
+		
+		return userService.validateUserService(user);
+	
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/user_signup")
