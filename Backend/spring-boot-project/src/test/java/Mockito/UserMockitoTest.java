@@ -1,7 +1,6 @@
 package Mockito;
 
 import static org.junit.Assert.assertEquals;
-
 import static org.mockito.Mockito.when;
 
 import org.junit.Before;
@@ -41,6 +40,15 @@ public class UserMockitoTest {
 		
 		assertEquals("success",userService.validateUserService(user));
 		
+	}
+	
+	@Test
+	public void signUpExistingUserTest()
+	{
+		User user = new User(1,"testnetid","testpassword","first","last","testusername",1234,1234,1234);
+		when(repo.findByNetid("testnetid")).thenReturn(user);
+		
+		assertEquals("user_already_exists", userService.signUpUserService(user));
 	}
 	
 

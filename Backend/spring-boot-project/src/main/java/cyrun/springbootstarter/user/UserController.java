@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserController {
-
-	@Autowired
-	private UserRepository userRepository;
 	
 	@Autowired
 	private UserService userService;
@@ -19,30 +16,12 @@ public class UserController {
 	public String validateUser(@RequestBody User user) {
 		
 		return userService.validateUserService(user);
-	
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/user_signup")
 	public String signUpUser(@RequestBody User user) {
 		
-		//Verify the user doesn't exists, if it does exist already return fail
-		User found_user = userRepository.findByNetid(user.getNetid());
-		if (found_user != null) {
-			return "user_already_exists";
-		}
-		
-		
-		userRepository.insertNewUser(user.getFirst_name(), user.getLast_name(), user.getUsername(),
-				user.getPassword(), user.getIsu_id(), user.getRouting_number(), user.getAccount_number(),
-				user.getNetid());
-		
-		//Verify the record was posted, if posted return success
-		found_user = userRepository.findByNetid(user.getNetid());
-		if (found_user != null) {
-			return "signup_success";
-		}
-
-		return "fail";
+		return userService.signUpUserService(user);
 	}
 
 }
