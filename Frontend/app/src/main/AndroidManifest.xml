@@ -8,17 +8,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".app.AppController"
         android:allowBackup="true"
-        android:label="@string/CyRUN"
         android:icon="@drawable/cyrun"
+        android:label="@string/CyRUN"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name="com.example.homepage.app.AppController"
-        android:usesCleartextTraffic="true"
-        >
-        <activity android:name=".UserSignUpActivity"></activity>
-
-        <activity android:name=".ClydesMenuActivity"></activity>
+        android:usesCleartextTraffic="true">
+        <activity android:name=".WestSideMarket"></activity>
+        <activity android:name=".UserSignUpActivity" />
+        <activity android:name=".ClydesMenuActivity" />
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".LocationsMenuActivity" />
         <activity android:name=".MainActivity">
