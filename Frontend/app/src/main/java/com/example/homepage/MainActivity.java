@@ -64,47 +64,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void verifyCredentials(String netId, String password) {
-        try {
-            JSONObject jsonBody = new JSONObject();
-            jsonBody.put("netid", netId);
-            jsonBody.put("password", password);
-            final String requestBody = jsonBody.toString();
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            StringRequest postRequest = new StringRequest(Request.Method.POST, urlJsonObj, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    System.out.println(response);
-                    if (response.equals("success")) {
-                        openHomePageActivity();
+            try {
+                JSONObject jsonBody = new JSONObject();
+                jsonBody.put("netid", netId);
+                jsonBody.put("password", password);
+                final String requestBody = jsonBody.toString();
+                RequestQueue requestQueue = Volley.newRequestQueue(this);
+                StringRequest postRequest = new StringRequest(Request.Method.POST, urlJsonObj, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        System.out.println(response);
+                        if (verifyUser(response)) {
+                            openHomePageActivity();
+                        }
                     }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    System.out.println(error);
-                }
-            }) {
-
-                @Override
-                public String getBodyContentType() {
-                    return "application/json; charset=utf-8";
-                }
-
-                @Override
-                public byte[] getBody() throws AuthFailureError {
-                    try {
-                        return requestBody == null ? null : requestBody.getBytes("utf-8");
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                        return null;
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println(error);
                     }
-                }
-            };
-            requestQueue.add(postRequest);
+                }) {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/json; charset=utf-8";
+                    }
+
+                    @Override
+                    public byte[] getBody() throws AuthFailureError {
+                        try {
+                            return requestBody == null ? null : requestBody.getBytes("utf-8");
+                        } catch (UnsupportedEncodingException uee) {
+                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                            return null;
+                        }
+                    }
+                };
+                requestQueue.add(postRequest);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
     }
 
@@ -116,5 +116,13 @@ public class MainActivity extends AppCompatActivity {
     public void openSignupPage() {
         Intent intent = new Intent(this, UserSignUpActivity.class);
         startActivity(intent);
+    }
+
+
+    public boolean verifyUser(String Response) {
+        if(Response.equals("success")){
+            return true;
+        }
+        return false;
     }
 }
