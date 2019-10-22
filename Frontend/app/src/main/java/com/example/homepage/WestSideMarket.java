@@ -29,12 +29,19 @@ public class WestSideMarket extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_west_side_market);
+
+
+        final ArrayList<String> tubeLines = new ArrayList<>();
+
+        final ArrayAdapter<String> ArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tubeLines);
+        final ListView Listv = findViewById(R.id.WSM_item_list);
+        Listv.setAdapter(ArrayAdapter);
+        makeJsonArrayRequest(tubeLines, ArrayAdapter);
+
     }
 
-
-    private TextView txtResponse;
-
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/west_side_market";
+
 
     /**
      * Making the JSON Array request
@@ -43,27 +50,25 @@ public class WestSideMarket extends AppCompatActivity {
         // making the new object
 
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonObj, null, new Response.Listener<JSONArray>() {
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonObj, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 System.out.println(response);
-                try {
-                    JSONArray array = new JSONArray(response);
-                    for (int i = 0; i < array.length(); i++){
-                        JSONObject object = array.optJSONObject(i);
-                        String line = object.optString("item_name");
-                        if(line != null){
-                            tl.add(line);
-                        }
+                for (int i = 0; i < response.length(); i++){
+                    JSONObject object = response.optJSONObject(i);
+                    String line = object.optString("item_name");
+                    String line1 = object.optString("item_price");
+                    String format = String.format("%1$s $%2$s", line, line1);
+                    if(line != null){
+                        tl.add(format);
                     }
-
-                    arrAdapt.notifyDataSetChanged();
-                }catch (JSONException e){
-                    e.printStackTrace();
                 }
-                System.out.println("Succcessfull"); //Console printout that it was in the onResponse methods
-                System.out.println(response.toString()); // Console print out of the request
-                txtResponse.setText(response.toString()); //In the screen it should show up the array
+
+                arrAdapt.notifyDataSetChanged();
+
+                //System.out.println("Succcessfull"); //Console printout that it was in the onResponse methods
+                //System.out.println(response.toString()); // Console print out of the request
+                //txtResponse.setText(response.toString()); //In the screen it should show up the array
             }
         }, new Response.ErrorListener() {
             @Override

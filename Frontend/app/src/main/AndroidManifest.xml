@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WestSideMarket"></activity>
+        <activity android:name=".WestSideMarket" />
         <activity android:name=".UserSignUpActivity" />
         <activity android:name=".ClydesMenuActivity" />
         <activity android:name=".UserHomeActivity" />
