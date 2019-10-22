@@ -1,13 +1,13 @@
 package com.example.homepage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -51,8 +51,9 @@ public class UserSignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
-                if (!isuIDEtext.getText().toString().equals("") && !routingNumberEtext.getText().toString().equals("") && !accountNumberEtext.getText().toString().equals("") && !firstNameEtext.getText().toString().equals("") && !lastNameEtext.getText().toString().equals("") &&
-                        !userNameEtext.getText().toString().equals("") && !passwordEtext.getText().toString().equals("") && !netIDEtext.getText().toString().equals("")) {
+                if (verifySignupInput(firstNameEtext.getText().toString(), lastNameEtext.getText().toString(), userNameEtext.getText().toString(),
+                        passwordEtext.getText().toString(), isuIDEtext.getText().toString(), routingNumberEtext.getText().toString(), accountNumberEtext.getText().toString(),
+                        netIDEtext.getText().toString()) == true) {
                     Integer isuID = Integer.parseInt(isuIDEtext.getText().toString());
                     Integer routingNumber = Integer.parseInt(routingNumberEtext.getText().toString());
                     Integer accountNumber = Integer.parseInt(accountNumberEtext.getText().toString());
@@ -113,7 +114,16 @@ public class UserSignUpActivity extends AppCompatActivity {
 
     }
 
+    public boolean verifySignupInput(String isuID, String routingNumber, String accountNumber, String firstName, String lastName, String userName, String password, String netID){
+        // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
 
+        if (!isuID.equals("") && !routingNumber.equals("") && !accountNumber.equals("") && !firstName.equals("") && !lastName.equals("") &&
+                !userName.equals("") && !password.equals("") && !netID.equals("")) {
+            return true;
+        }
+
+        return false;
+    }
     public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
