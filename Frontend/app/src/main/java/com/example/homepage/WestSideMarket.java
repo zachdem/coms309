@@ -66,9 +66,6 @@ public class WestSideMarket extends AppCompatActivity {
 
                 arrAdapt.notifyDataSetChanged();
 
-                //System.out.println("Succcessfull"); //Console printout that it was in the onResponse methods
-                //System.out.println(response.toString()); // Console print out of the request
-                //txtResponse.setText(response.toString()); //In the screen it should show up the array
             }
         }, new Response.ErrorListener() {
             @Override
