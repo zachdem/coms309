@@ -17,45 +17,45 @@ import com.example.homepage.app.AppController;
 import org.json.JSONArray;
 
 
-public class Activity2 extends AppCompatActivity {
+public class UserHomeActivity extends AppCompatActivity {
 
-    private Button Button;
+    private Button orderButton;
 
-    public void openActivity3() {
-        Intent intent = new Intent(this, Activity3.class);
-        startActivity(intent);
-    }
 
     // URL
-    private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/orders";
+    //private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/orders";
 
-
-    private TextView txtResponse;
+    //private TextView txtResponse;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_acitivity2);
-        txtResponse  =  findViewById(R.id.txtResponse);
+        setContentView(R.layout.activity_user_home);
+        orderButton = findViewById(R.id.order_button);
 
-        Button = findViewById(R.id.Clydes);
-
-        Button.setOnClickListener(new View.OnClickListener() {
+        orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //openActivity3();
-                makeJsonArrayRequest();
+
+                openLocationsActivity();
 
             }
         });
 
     }
 
+    public void openLocationsActivity() {
+        Intent intent = new Intent(this, LocationsMenuActivity.class);
+        startActivity(intent);
+    }
+
+
+
     /**
      * Making the JSON Array request
      */
-    private void makeJsonArrayRequest(){
+  /*  private void makeJsonArrayRequest(){
         // making the new object
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonObj, null, new Response.Listener<JSONArray>() {
             @Override
@@ -72,6 +72,6 @@ public class Activity2 extends AppCompatActivity {
             }
         });
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
-    }
+    }*/
 
 }

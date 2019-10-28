@@ -18,6 +18,17 @@
     <string name="Pizza">Cheese Pizza</string>
     <string name="Pasta">Pasta</string>
 
+    <string name="User_ID">User ID</string>
+    <string name="First_Name">First Name</string>
+    <string name="Last_Name">Last Name</string>
+    <string name="User_Name">User Name</string>
+    <string name="Password1">Password</string>
+    <string name="ISU_ID">ISU_ID</string>
+    <string name="Routing_Number">Routing Number</string>
+    <string name="Account_Number">Account Number</string>
+    <string name="UserNet_ID">Net ID</string>
 
+    <string name="SouthSideMarket">South Side Market</string>
+    <string name="West_Side">West Side Market</string>
 
 </resources>

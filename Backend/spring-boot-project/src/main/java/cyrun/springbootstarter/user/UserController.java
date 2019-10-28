@@ -10,22 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 	
 	@Autowired
-	private UserRepository userRepository;
-	
-	@RequestMapping(method=RequestMethod.POST, value="/userlogin")
-	public String validateUser(@RequestBody User user)
-	{
-		User found_user = userRepository.findByNetid(user.getNetid()); 
+	private UserService userService;
+
+	@RequestMapping(method = RequestMethod.POST, value = "/userlogin")
+	public String validateUser(@RequestBody User user) {
 		
-		if(found_user != null)
-		{
-			if(found_user.getPassword().equals(user.getPassword()))
-			{
-				return "success";
-			}
-		}
+		return userService.validateUserService(user);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/user_signup")
+	public String signUpUser(@RequestBody User user) {
 		
-		return "fail";
+		return userService.signUpUserService(user);
 	}
 
 }
