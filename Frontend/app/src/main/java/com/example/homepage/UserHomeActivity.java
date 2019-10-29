@@ -19,7 +19,7 @@ import org.json.JSONArray;
 
 public class UserHomeActivity extends AppCompatActivity {
 
-    private Button orderButton;
+    private Button orderButton, chatButton;
 
 
     // URL
@@ -33,6 +33,7 @@ public class UserHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
         orderButton = findViewById(R.id.order_button);
+        chatButton = findViewById(R.id.chat_button);
 
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,10 +44,25 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         });
 
+
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                openChatActivity();
+
+            }
+        });
+
     }
 
     public void openLocationsActivity() {
         Intent intent = new Intent(this, LocationsMenuActivity.class);
+        startActivity(intent);
+    }
+
+    public void openChatActivity() {
+        Intent intent = new Intent(this, ChatActivity.class);
         startActivity(intent);
     }
 

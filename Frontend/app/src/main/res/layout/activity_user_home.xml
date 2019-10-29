@@ -7,6 +7,24 @@
     android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
+
+    <Button
+        android:id="@+id/chat_button"
+        android:layout_width="136dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="184dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/Chat"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/cy_image"
         android:layout_width="75dp"
