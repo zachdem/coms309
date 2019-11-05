@@ -47,7 +47,7 @@ public class UserSignUpActivity extends AppCompatActivity {
         accountNumberEtext = findViewById(R.id.account_num_etext);
         netIDEtext = findViewById(R.id.netid_etext);
         signUpButton = findViewById(R.id.sign_up_button);
-        Runner = findViewById(R.id.checkBox);
+        Runner = findViewById(R.id.Runner);
 
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -84,9 +84,6 @@ public class UserSignUpActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     System.out.println(response);
                     if (response.equals("signup_success")) {
-                       /* if(!Runner.isChecked() {
-
-                        openMainActivity();*/
                         openMainActivity();
                     }
                 }
