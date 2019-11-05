@@ -8,14 +8,29 @@
     tools:context=".MainActivity">
 
 
+    <ListView
+        android:id="@+id/order_list_view"
+        android:layout_width="399dp"
+        android:layout_height="265dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="357dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="109dp"
+        android:focusableInTouchMode="false"
+        android:isScrollContainer="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/chat_button"
-        android:layout_width="136dp"
-        android:layout_height="67dp"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="480dp"
-        android:layout_marginEnd="138dp"
-        android:layout_marginBottom="184dp"
+        android:layout_width="88dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="633dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="47dp"
         android:backgroundTint="@color/colorPrimaryDark"
         android:fontFamily="sans-serif-black"
         android:text="@string/Chat"

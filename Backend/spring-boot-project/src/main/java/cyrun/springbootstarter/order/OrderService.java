@@ -1,6 +1,5 @@
 package cyrun.springbootstarter.order;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +11,8 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
 	
-	public List<Order> getAllOrders()
+	public List<Order> getUserOrders(String netid)
 	{
-		//return orders;
-		List<Order> orders = new ArrayList<>();
-		orderRepository.findAll().forEach(orders::add);
-		return orders;
+		return orderRepository.getUserOrders(netid);
 	}
-	
-	public void addOrder(Order order)
-	{
-		orderRepository.save(order);
-	}
-
 }
