@@ -1,10 +1,14 @@
 package com.example.homepage;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,11 +29,21 @@ import java.util.ArrayList;
 
 public class ClydesMenuActivity extends AppCompatActivity {
 
+    private ImageButton cartButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clydes_menu);
 
+        cartButton = findViewById(R.id.cartButton);
+
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCartActivity();
+            }
+        });
         final ArrayList<String> tubeLines = new ArrayList<>();
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tubeLines){
@@ -52,6 +66,13 @@ public class ClydesMenuActivity extends AppCompatActivity {
         final ListView lv = findViewById(R.id.clydesListView);
         lv.setAdapter(arrayAdapter);
         makeJsonArrayRequest(tubeLines,arrayAdapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+            });
 
     }
 
@@ -81,10 +102,6 @@ public class ClydesMenuActivity extends AppCompatActivity {
                 }
 
                 arrAdapt.notifyDataSetChanged();
-
-                //System.out.println("Succcessfull"); //Console printout that it was in the onResponse methods
-                //System.out.println(response.toString()); // Console print out of the request
-                //txtResponse.setText(response.toString()); //In the screen it should show up the array
             }
         }, new Response.ErrorListener() {
             @Override
@@ -96,7 +113,10 @@ public class ClydesMenuActivity extends AppCompatActivity {
         return true;
     }
 
-
+    public void openCartActivity(){
+        Intent intent = new Intent(this, CartActivity.class);
+        startActivity(intent);
+    }
 
 
 
