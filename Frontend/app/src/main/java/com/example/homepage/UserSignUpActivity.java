@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class UserSignUpActivity extends AppCompatActivity {
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/user_signup";
 
     private TextView txtResponse;
+    private CheckBox Runner;
     private Button signUpButton;
     private EditText firstNameEtext, lastNameEtext, userNameEtext, passwordEtext, isuIDEtext, routingNumberEtext, accountNumberEtext, netIDEtext;
 
@@ -45,6 +47,7 @@ public class UserSignUpActivity extends AppCompatActivity {
         accountNumberEtext = findViewById(R.id.account_num_etext);
         netIDEtext = findViewById(R.id.netid_etext);
         signUpButton = findViewById(R.id.sign_up_button);
+        Runner = findViewById(R.id.checkBox);
 
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +84,9 @@ public class UserSignUpActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     System.out.println(response);
                     if (response.equals("signup_success")) {
+                       /* if(!Runner.isChecked() {
+
+                        openMainActivity();*/
                         openMainActivity();
                     }
                 }
@@ -126,6 +132,11 @@ public class UserSignUpActivity extends AppCompatActivity {
     }
     public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void openRunnerActivity() {
+        Intent intent = new Intent(this, Runners_Page.class);
         startActivity(intent);
     }
 }

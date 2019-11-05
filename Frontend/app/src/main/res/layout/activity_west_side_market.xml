@@ -32,7 +32,7 @@
         android:text="@string/West_Side"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorPrimaryDark"
-        android:textStyle="italic"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/WSM_item_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -27,17 +27,30 @@ public class LocationsMenuActivity extends AppCompatActivity {
 
         westSideButton = findViewById(R.id.west_side_button);
 
+        southSideButton = findViewById(R.id.south_side_button);
+
         clydesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openClydesMenuActivity();
+                Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                //Intent.putExtra("Cydles", "Cyldes Menu Page");
+                startActivity(intent);
+                //openClydesMenuActivity();
             }
         });
 
         westSideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 openWestSideActivity();
+            }
+        });
+
+        southSideButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSouthsideActivity();
             }
         });
     }
@@ -51,6 +64,11 @@ public class LocationsMenuActivity extends AppCompatActivity {
 
     public void openWestSideActivity() {
         Intent intent = new Intent(this, WestSideMarket.class);
+        startActivity(intent);
+    }
+
+    public void openSouthsideActivity() {
+        Intent intent = new Intent(this, South_Side_Market.class);
         startActivity(intent);
     }
 

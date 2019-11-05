@@ -12,10 +12,10 @@
         android:id="@+id/chat_button"
         android:layout_width="136dp"
         android:layout_height="67dp"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="564dp"
         android:layout_marginEnd="138dp"
-        android:layout_marginBottom="184dp"
+        android:layout_marginBottom="100dp"
         android:backgroundTint="@color/colorPrimaryDark"
         android:fontFamily="sans-serif-black"
         android:text="@string/Chat"
@@ -71,8 +71,10 @@
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/hungry_text"
