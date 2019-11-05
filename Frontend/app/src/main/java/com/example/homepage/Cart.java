@@ -4,16 +4,34 @@ public class Cart {
 
     public String itemName;
 
-    public String itemPrice;
+    public int itemPrice;
 
-    public String quantity;
-
-    public String grandTotal;
+    public int quantity;
 
 
-    public String getQuantity(){
+    public int getQuantity(){
         return quantity;
     }
+
+    public void setQuantity(int q){
+        quantity = q;
+    }
+
+    public String getItemName(){
+        return itemName;
+    }
+
+    public void setItemName(String name){
+        itemName = name;
+    }
+
+    public void setItemPrice(String itmName){
+        itemPrice = Integer.parseInt(itmName);
+    }
+    public int getItemPrice(){
+        return itemPrice;
+    }
+
 
 
 
