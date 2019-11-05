@@ -21,8 +21,12 @@ import cyrun.springbootstarter.order.OrderService;
 @Component
 public class UserHomeEndpoint {
 	
+	private static OrderService orderService;
+
 	@Autowired
-	OrderService orderService;
+	public void setUserService(OrderService orderServ){
+	    orderService = orderServ;
+	}
 	
 	private HashMap<Session, String> connectedUsers;
 
@@ -73,9 +77,9 @@ public class UserHomeEndpoint {
 			
 			for(Map.Entry<Session, String> connectedUser : connectedUsers.entrySet())
 			{
-				System.out.println(orderService.getUserOrders("test_netid"));
-				//connectedUser.getKey().getBasicRemote().sendText(orderService.getUserOrders(connectedUser.getValue()).toString());
 				connectedUser.getKey().getBasicRemote().sendText("blah");
+				connectedUser.getKey().getBasicRemote().sendText(orderService.getUserOrders("test_netid").toString());
+				//connectedUser.getKey().getBasicRemote().sendObject(orderService.getUserOrders("test_netid"));
 			}
 			
 		}
