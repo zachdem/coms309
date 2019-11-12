@@ -24,7 +24,7 @@ public class OrderController {
 		@RequestMapping(method = RequestMethod.POST, value = "/orders/place_order")
 		public String placeOrder(@RequestBody String order) {
 			System.out.println(order);
-			
+			orderService.placeOrder(order);
 			return "received";
 		}
 

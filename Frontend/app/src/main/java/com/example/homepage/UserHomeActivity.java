@@ -75,7 +75,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
         // Create a WebSocket. The timeout value set above is used.
         try {
-            ws = factory.createSocket("ws://10.26.162.153:8080/userhome");
+            ws = factory.createSocket("ws://coms-309-ks-6.misc.iastate.edu:8080/userhome");
 
             ws.addListener(new WebSocketAdapter() {
 
