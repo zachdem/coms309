@@ -1,76 +1,133 @@
 package com.example.homepage;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.homepage.app.AppController;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LocationsMenuActivity extends AppCompatActivity {
 
-    private Button clydesButton;
-    private Button westSideButton;
-    private Button southSideButton;
-    private Button muButton;
-    private Button hawthornButton;
-    private Button eastSideButton;
-    private Button whirlyBirdsButton;
-    private Button bookendsButton;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_locations_menu);
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_locations_menu);
 
-        clydesButton = findViewById(R.id.clydes_button);
 
-        westSideButton = findViewById(R.id.west_side_button);
 
-        southSideButton = findViewById(R.id.south_side_button);
+            Button clydesButton = findViewById(R.id.clydes_button);
+            Button westSideButton = findViewById(R.id.west_side_button);
+            Button southSideButton = findViewById(R.id.south_side_button);
+            Button HawthornButton = findViewById(R.id.hawthorn_button);
+            Button eastSideButton = findViewById(R.id.east_side_button);
+            Button whirlyBirdsButton = findViewById(R.id.whirly_button);
+            Button MUbutton = findViewById(R.id.mu_button);
+            Button bookendsButton = findViewById(R.id.bookends_button);
 
-        clydesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
-                //Intent.putExtra("Cydles", "Cyldes Menu Page");
-                startActivity(intent);
-                //openClydesMenuActivity();
-            }
-        });
 
-        westSideButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            clydesButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    intent.putExtra("Item", "Clydes");
+                    intent.putExtra("URL", "clydes");
+                    startActivity(intent);
+                }
+            });
 
-                openWestSideActivity();
-            }
-        });
 
-        southSideButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openSouthsideActivity();
-            }
-        });
+            westSideButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    intent.putExtra("Item", "West Side Market");
+                    intent.putExtra("URL", "west_side_market");
+                    startActivity(intent);
+                }
+            });
+
+
+            southSideButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    intent.putExtra("Item", "South Side Market");
+                    intent.putExtra("URL", "south_side_market");
+                    startActivity(intent);
+                }
+            });
+
+            HawthornButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    intent.putExtra("Item", "Hawthorn Market");
+                    intent.putExtra("URL", "hawthorn");
+                    startActivity(intent);
+                }
+            });
+
+            eastSideButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    intent.putExtra("Item", "East Side Market");
+                    intent.putExtra("URL", "east_side_market");
+                    startActivity(intent);
+                }
+            });
+
+            whirlyBirdsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    intent.putExtra("Item", "WhirlyBirds Market");
+                    intent.putExtra("URL", "whirlybirds");
+                    startActivity(intent);
+                }
+            });
+
+            MUbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    intent.putExtra("Item", "Memorial Union");
+                    intent.putExtra("URL", "memorial_union_market_and_cafe");
+                    startActivity(intent);
+                }
+            });
+
+            bookendsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    intent.putExtra("Item", "Bookends Cafe");
+                    intent.putExtra("URL", "bookends_cafe");
+                    startActivity(intent);
+                }
+            });
+        }
     }
-
-
-    public void openClydesMenuActivity() {
-        Intent intent = new Intent(this, ClydesMenuActivity.class);
-        startActivity(intent);
-    }
-
-
-    public void openWestSideActivity() {
-        Intent intent = new Intent(this, WestSideMarket.class);
-        startActivity(intent);
-    }
-
-    public void openSouthsideActivity() {
-        Intent intent = new Intent(this, South_Side_Market.class);
-        startActivity(intent);
-    }
-
-
-}

@@ -16,13 +16,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".New_Location"></activity>
-        <activity android:name=".Hawthorn" />
         <activity android:name=".Runners_Page" />
-        <activity android:name=".South_Side_Market" />
-        <activity android:name=".WestSideMarket" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".UserSignUpActivity" />
-        <activity android:name=".ClydesMenuActivity" />
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".LocationsMenuActivity" />
         <activity android:name=".MainActivity">

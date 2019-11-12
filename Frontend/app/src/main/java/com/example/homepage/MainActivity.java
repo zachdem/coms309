@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/userlogin";
-
+    private String urlJsonRunner = "http://coms-309-ks-6.misc.iastate.edu:8080/runnerlogin";
+    private Boolean isUser = false;
     private static String TAG = MainActivity.class.getSimpleName();
 
 
@@ -43,17 +44,21 @@ public class MainActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.sign_up_button);
         netidEditText = findViewById(R.id.net_id_etext);
         passwordEditText = findViewById(R.id.password_etext);
-        //textview = findViewById(R.id.textView);
-        //textview.append("Incorrect netid/password!");
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
-                verifyCredentials(netidEditText.getText().toString(), passwordEditText.getText().toString());
+                if (isUser) {
+                    verifyCredentials(netidEditText.getText().toString(), passwordEditText.getText().toString());
+                } else {
+                    verifyCredentialsRunner(netidEditText.getText().toString(), passwordEditText.getText().toString());
+                }
             }
+
         });
+
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +110,54 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            isUser = true;
+
+    }
+
+    private void verifyCredentialsRunner(String netId, String password) {
+        try {
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("netid", netId);
+            jsonBody.put("password", password);
+            final String requestBody = jsonBody.toString();
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, urlJsonRunner, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    System.out.println(response);
+                    if (verifyUser(response)) {
+                        openRunnerActivity();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println(error);
+                }
+            }) {
+
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                        return null;
+                    }
+                }
+            };
+            requestQueue.add(postRequest);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        isUser = false;
 
     }
 
@@ -115,6 +168,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSignupPage() {
         Intent intent = new Intent(this, UserSignUpActivity.class);
+        startActivity(intent);
+    }
+
+    public void openRunnerActivity() {
+        Intent intent = new Intent(this, Runners_Page.class);
         startActivity(intent);
     }
 
