@@ -87,7 +87,16 @@
         android:id="@+id/subtotalTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/Subtotal"
         tools:layout_editor_absoluteX="20dp"
         tools:layout_editor_absoluteY="414dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="456dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
