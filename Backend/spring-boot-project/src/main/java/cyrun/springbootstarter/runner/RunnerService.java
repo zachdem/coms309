@@ -33,7 +33,7 @@ public class RunnerService {
 		}
 
 		runnerRepository.insertNewRunner(runner.getFirst_name(), runner.getLast_name(), runner.getUsername(), runner.getPassword(),
-				 runner.getRouting_number(), runner.getAccount_number(), runner.getNetid());
+				runner.getIsu_id(), runner.getRouting_number(), runner.getAccount_number(), runner.getNetid());
 
 		// Verify the record was posted, if posted return success
 		if (verifyRunnerExists(runner)) {

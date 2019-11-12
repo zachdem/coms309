@@ -17,6 +17,7 @@ public class Runner {
 	private String last_name;
 	private String username;
 	private String password;
+	private int isu_id;
 	private int routing_number;
 	private int account_number;
 	private String netid;
@@ -26,7 +27,7 @@ public class Runner {
 	}
 
 
-	public Runner(int runner_id, String first_name, String last_name, String username, String password,
+	public Runner(int runner_id, String first_name, String last_name, String username, String password, int isu_id,
 			int routing_number, int account_number, String netid) {
 		super();
 		this.runner_id = runner_id;
@@ -34,6 +35,7 @@ public class Runner {
 		this.last_name = last_name;
 		this.username = username;
 		this.password = password;
+		this.isu_id = isu_id;
 		this.routing_number = routing_number;
 		this.account_number = account_number;
 		this.netid = netid;
@@ -80,6 +82,13 @@ public class Runner {
 		this.password = password;
 	}
 
+	public int getIsu_id() {
+		return isu_id;
+	}
+	
+	public void setIsu_id(int isu_id) {
+		this.isu_id = isu_id;
+	}
 	public int getRouting_number() {
 		return routing_number;
 	}
