@@ -40,5 +40,13 @@
     <string name="Items">Items</string>
     <string name="Total">Total</string>
 
+    <string name="Subtotal">Subtotal</string>
+    <string name="Fees">Fees and Estimated tax</string>
+    <string name="Delivery">Delivery</string>
+    <string name="Discount">Discount</string>
+
+
+
+
 
 </resources>
