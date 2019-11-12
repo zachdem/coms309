@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.homepage.app.AppController;
+import com.google.gson.Gson;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketFactory;
@@ -35,8 +36,6 @@ public class UserHomeActivity extends AppCompatActivity {
 
     private Button orderButton, chatButton;
     private WebSocket ws = null;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +65,8 @@ public class UserHomeActivity extends AppCompatActivity {
 
         final ArrayList<String> orderList = new ArrayList<>();
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList){
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                // Get the Item from ListView
-                View view = super.getView(position, convertView, parent);
+        final ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
 
-                // Initialize a TextView for ListView each Item
-                TextView tv = view.findViewById(android.R.id.text1);
-
-                // Set the text color of TextView (ListView Item)
-                tv.setTextColor(Color.parseColor("#C30107"));
-
-                // Generate ListView Item using TextView
-                return view;
-            }
-        };
         final ListView lv = findViewById(R.id.order_list_view);
         lv.setAdapter(arrayAdapter);
 
@@ -91,30 +75,44 @@ public class UserHomeActivity extends AppCompatActivity {
 
         // Create a WebSocket. The timeout value set above is used.
         try {
-            ws = factory.createSocket("ws://10.10.7.4:8080/userhome");
+            ws = factory.createSocket("ws://10.26.162.153:8080/userhome");
 
             ws.addListener(new WebSocketAdapter() {
 
                 @Override
-                public void onBinaryMessage(WebSocket websocket, byte[] binary) throws Exception
-                {
-                    orderList.clear();
-                    JSONArray arr = new JSONArray(new String(binary));
-                    for(int i = 0; i < arr.length(); i++)
-                    {
+                public void onTextMessage(WebSocket websocket, String message) throws Exception {
+                    ArrayList<String> tempList = new ArrayList<>();
+                    Gson g = new Gson();
+                    JSONArray arr = new JSONArray(message);
+                    System.out.println("JSON Array: " + arr);
+                    System.out.println(message);
+                    System.out.println(arr.length());
+                    for (int i = 0; i < arr.length(); i++) {
+                        System.out.println(i);
                         JSONObject obj = arr.optJSONObject(i);
+                        System.out.println(obj);
                         String orderID = obj.optString("order_id");
                         String pendingOrder = obj.optString("pending_order");
-                        String format = String.format("%1$s $%2$s0", orderID, pendingOrder);
-                        if(orderID != null){
-                            orderList.add(format);
+                        String order = "     Order Number: " + orderID + ", Pending Order: " + pendingOrder;
+                        if (orderID != null) {
+                            tempList.add(order);
                         }
                     }
+
+                    orderList.clear();
+                    for (int i = 0; i < tempList.size(); i++) {
+                        orderList.add(tempList.get(i));
+                    }
+                    arrayAdapter.notifyDataSetChanged();
                 }
             });
 
             ws.connectAsynchronously();
+            Thread.sleep(500);
+            ws.sendText("test_netid");
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 

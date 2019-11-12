@@ -12,30 +12,30 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import cyrun.springbootstarter.order.OrderService;
+import com.google.gson.Gson;
 
+import cyrun.springbootstarter.order.OrderService;
 
 @ServerEndpoint("/userhome")
 @Component
 public class UserHomeEndpoint {
-	
+
 	private static OrderService orderService;
 
 	@Autowired
-	public void setUserService(OrderService orderServ){
-	    orderService = orderServ;
+	public void setUserService(OrderService orderServ) {
+		orderService = orderServ;
 	}
-	
-	private HashMap<Session, String> connectedUsers;
 
-		
-	public UserHomeEndpoint()
-	{
+	private static HashMap<Session, String> connectedUsers;
+
+	public UserHomeEndpoint() {
 		connectedUsers = new HashMap<Session, String>();
 	}
-	
+
 	@OnOpen
 	public void onOpen(Session session) throws IOException {
 		session.getBasicRemote().sendText("Connected");
@@ -43,7 +43,8 @@ public class UserHomeEndpoint {
 
 	@OnMessage
 	public void onMessage(Session session, String message) throws IOException {
-		//First message sent will be netid
+		System.out.println("Adding netid");
+		// First message sent will be netid
 		session.getBasicRemote().sendText("Adding Entry");
 		connectedUsers.put(session, message);
 		this.sendMessage();
@@ -58,35 +59,22 @@ public class UserHomeEndpoint {
 	@OnError
 	public void onError(Throwable throwable) {
 	}
-	
-	
-	/*@Scheduled(fixedDelay = 300)
-	public void pushUpdatedOrders()
-	{
+
+	@Scheduled(fixedDelay = 10000)
+	public void pushUpdatedOrders() throws IOException {
+		this.sendMessage();
 		
-	}*/
+	}
 
+	public void sendMessage() throws IOException {
 
-	/*private void sendUpdatedOrders()
-	{
+		for (Map.Entry<Session, String> connectedUser : connectedUsers.entrySet()) {
+			Gson g = new Gson();
+			String userOrders = g.toJson(orderService.getUserOrders("test_netid"));
 
-	}*/
-	
-	public void sendMessage() {
-		try {
-			
-			for(Map.Entry<Session, String> connectedUser : connectedUsers.entrySet())
-			{
-				connectedUser.getKey().getBasicRemote().sendText("blah");
-				connectedUser.getKey().getBasicRemote().sendText(orderService.getUserOrders("test_netid").toString());
-				//connectedUser.getKey().getBasicRemote().sendObject(orderService.getUserOrders("test_netid"));
-			}
-			
+			connectedUser.getKey().getBasicRemote().sendText(userOrders);
 		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	
+
 	}
 
 }
