@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+        app:layout_constraintTop_toBottomOf="@+id/totalRview" />
 
     <TextView
         android:id="@+id/itemsText"
@@ -71,6 +71,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/itemsRview"
         android:layout_width="409dp"
         android:layout_height="219dp"
         android:layout_marginStart="1dp"
@@ -84,7 +85,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/totalRview"
         android:layout_width="409dp"
         android:layout_height="270dp"
         android:layout_marginTop="366dp"
