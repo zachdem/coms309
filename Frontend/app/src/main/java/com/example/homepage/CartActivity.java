@@ -30,7 +30,7 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Button placeOrder;
 
-    String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/orders";
+    String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/orders/place_order";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public class CartActivity extends AppCompatActivity {
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("helllllloooooo");
                 sendOrder();
             }
         });
@@ -57,22 +58,26 @@ public class CartActivity extends AppCompatActivity {
 
     private void sendOrder(){
         //JSONArray jsonArray = new JSONArray();
-        for(int i = 0; i < Cart.cartList.size(); i++){
+        //for(int i = 0; i < Cart.cartList.size(); i++){
             JSONObject jsonObject = new JSONObject();
             try{
-                jsonObject.put("item_name", Cart.cartList.get(i).itemName);
-                jsonObject.put("location_name", "clydes");
-                jsonObject.put("netid", User.userNetid);
-                final String requestBody = jsonObject.toString();
+//                jsonObject.put("item_name", Cart.cartList.get(i).itemName);
+//                jsonObject.put("location_name", "clydes");
+//                jsonObject.put("netid", User.userNetid);
+                //jsonObject.put("hello");
+                final String requestBody = "hello";
                 RequestQueue requestQueue = Volley.newRequestQueue(this);
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, urlJsonObj, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        System.out.println("success");
+
                         System.out.println(response);
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        System.out.println("error");
                         System.out.println(error);
                     }
                 }){
@@ -101,4 +106,4 @@ public class CartActivity extends AppCompatActivity {
     }
 
 
-}
+//}
