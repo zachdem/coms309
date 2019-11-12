@@ -32,5 +32,22 @@
 
     <string name="SouthSideMarket">South Side Market</string>
     <string name="West_Side">West Side Market</string>
+    <string name="ClickToAddToCart">Press item to add to cart</string>
+    <string name="CartButton">View Cart</string>
+
+    <string name="CartText">Cart</string>
+    <string name="PlaceOrder">Place Order</string>
+    <string name="Items">Items</string>
+    <string name="Total">Total</string>
+
+    <string name="Subtotal">Subtotal</string>
+    <string name="Fees">Fees and Estimated tax</string>
+    <string name="Delivery">Delivery</string>
+    <string name="Discount">Discount</string>
+    <string name="GrandTotal">Total</string>
+
+
+
+
 
 </resources>

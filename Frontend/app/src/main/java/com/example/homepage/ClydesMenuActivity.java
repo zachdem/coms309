@@ -1,10 +1,14 @@
 package com.example.homepage;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,15 +25,26 @@ import com.example.homepage.app.AppController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ClydesMenuActivity extends AppCompatActivity {
 
+    private ImageButton cartButton;
+    Cart cart = new Cart();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clydes_menu);
 
+        cartButton = findViewById(R.id.cartButton);
+
+        cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCartActivity();
+            }
+        });
         final ArrayList<String> tubeLines = new ArrayList<>();
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tubeLines){
@@ -53,6 +68,28 @@ public class ClydesMenuActivity extends AppCompatActivity {
         lv.setAdapter(arrayAdapter);
         makeJsonArrayRequest(tubeLines,arrayAdapter);
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String itemDetail = ((ArrayAdapter) lv.getAdapter()).getItem(position).toString();
+                System.out.println(itemDetail);
+                boolean found = false;
+                String tempItemPrice;
+                String tempItemName;
+
+                int index = itemDetail.indexOf('$');
+
+                tempItemPrice = itemDetail.substring(index + 1);
+                tempItemName = itemDetail.substring(0, index - 1);
+                CartItem cartItem = new CartItem(tempItemName, tempItemPrice);
+                Cart.cartList.add(cartItem);
+                System.out.println(Cart.cartList);
+
+            }
+            });
+
+
+
     }
 
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/clydes";
@@ -71,20 +108,16 @@ public class ClydesMenuActivity extends AppCompatActivity {
                 System.out.println(response);
                 for (int i = 0; i < response.length(); i++){
                     JSONObject object = response.optJSONObject(i);
-                    String line = object.optString("item_name");
-                    String line1 = object.optString("item_price");
-                    String format = String.format("%1$s $%2$s0", line, line1);
-                    if(line != null){
+                    String itemNameString = object.optString("item_name");
+                    String itemPriceString = object.optString("item_price");
+                    String format = String.format("%1$s $%2$s0", itemNameString, itemPriceString);
+                    if(itemNameString != null){
                         tl.add(format);
-
+                        System.out.println(format);
                     }
                 }
 
                 arrAdapt.notifyDataSetChanged();
-
-                //System.out.println("Succcessfull"); //Console printout that it was in the onResponse methods
-                //System.out.println(response.toString()); // Console print out of the request
-                //txtResponse.setText(response.toString()); //In the screen it should show up the array
             }
         }, new Response.ErrorListener() {
             @Override
@@ -96,7 +129,10 @@ public class ClydesMenuActivity extends AppCompatActivity {
         return true;
     }
 
-
+    public void openCartActivity(){
+        Intent intent = new Intent(this, CartActivity.class);
+        startActivity(intent);
+    }
 
 
 

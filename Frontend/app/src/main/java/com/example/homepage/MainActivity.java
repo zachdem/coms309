@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         System.out.println(response);
                         if (verifyUser(response)) {
-                            LocalInformation.netid = netId;
+                            User.userNetid = netId;
                             openHomePageActivity();
                         }
                     }
