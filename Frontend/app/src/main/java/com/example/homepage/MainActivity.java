@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/userlogin";
     private String urlJsonRunner = "http://coms-309-ks-6.misc.iastate.edu:8080/runnerlogin";
-    private Boolean isUser = false;
+    private Boolean isUser = true;
     private static String TAG = MainActivity.class.getSimpleName();
 
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
                 if (isUser) {
                     verifyCredentials(netidEditText.getText().toString(), passwordEditText.getText().toString());
-                } else {
+                } else if(!isUser) {
                     verifyCredentialsRunner(netidEditText.getText().toString(), passwordEditText.getText().toString());
                 }
             }
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            isUser = true;
+            isUser = false;
 
     }
 
