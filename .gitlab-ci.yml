@@ -1,6 +1,6 @@
 # Stages of pipeline, should match with stage tag inside each job.
 # Each stages executes in sequence, if previous job fails, then all the preceeding jobs are skipped.
- stages:
+stages:
   - mavenbuild
   - maventest
   - autodeploy
@@ -12,7 +12,7 @@
 maven-build:
   stage: mavenbuild
   tags:
-   - springboot_tag
+    - springboot_tag
   script:
     - cd Backend/spring-boot-project
     - mvn package -B
@@ -26,16 +26,16 @@ maven-test:
   script:
     - cd Backend/spring-boot-project
     - mvn test
- artifacts:
-   paths:
-    - Backend/spring-boot-project/target/*.jar
+  artifacts:
+    paths:
+      - Backend/spring-boot-project/target/*.jar
 #Below stage builds, deploys and executes the jar as service.
 # Make sure there is /target directory in your server, else script will fail, or use any other folder you like.
 # If you are changing the folder, reflect the change in systemd-web-demo service too.
 autoDeploy:
   stage: autodeploy
   tags:
-    - springboot_tag
+   - springboot_tag
   script:
     - cd Backend/spring-boot-project
     - mvn package
@@ -80,3 +80,4 @@ unitTests:
   script:
     - cd Frontend
     - ./gradlew test
+
