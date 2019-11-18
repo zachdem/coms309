@@ -28,26 +28,30 @@
     <string name="Account_Number">Account Number</string>
     <string name="UserNet_ID">Net ID</string>
     <string name="Chat">Chat</string>
+    <string name="Runner">Would you like to become a runner?</string>
+    <string name="Runners">Runner HomePage</string>
+    <string name="Runners_Page">Runners SignUp Page</string>
+    <string name="Hawthorn_Page">Hawthorn</string>
+    <string name="Runnerss">Runner SignUp</string>
 
-
-    <string name="SouthSideMarket">South Side Market</string>
-    <string name="West_Side">West Side Market</string>
-    <string name="ClickToAddToCart">Press item to add to cart</string>
-    <string name="CartButton">View Cart</string>
-
-    <string name="CartText">Cart</string>
+    <string name="CartText">Runner SignUp</string>
     <string name="PlaceOrder">Place Order</string>
     <string name="Items">Items</string>
     <string name="Total">Total</string>
-
     <string name="Subtotal">Subtotal</string>
-    <string name="Fees">Fees and Estimated tax</string>
-    <string name="Delivery">Delivery</string>
+    <string name="Fees">Fees and Estimated Taxes</string>
     <string name="Discount">Discount</string>
+    <string name="Delivery">Delivery Fee</string>
     <string name="GrandTotal">Total</string>
 
 
 
 
+
+
+    <string name="SouthSideMarket">South Side Market</string>
+    <string name="West_Side">West Side Market</string>
+    <string name="Pending_Orders">View Pending Orders?</string>
+    <string name="Orders">Orders</string>
 
 </resources>
