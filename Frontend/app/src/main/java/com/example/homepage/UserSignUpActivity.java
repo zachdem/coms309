@@ -26,6 +26,8 @@ import java.io.UnsupportedEncodingException;
 public class UserSignUpActivity extends AppCompatActivity {
 
 
+
+
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/user_signup";
     private String getUrlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/runner_signup";
 
