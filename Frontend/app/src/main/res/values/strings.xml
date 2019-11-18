@@ -34,6 +34,20 @@
     <string name="Hawthorn_Page">Hawthorn</string>
     <string name="Runnerss">Runner SignUp</string>
 
+    <string name="CartText">Runner SignUp</string>
+    <string name="PlaceOrder">Place Order</string>
+    <string name="Items">Items</string>
+    <string name="Total">Total</string>
+    <string name="Subtotal">Subtotal</string>
+    <string name="Fees">Fees and Estimated Taxes</string>
+    <string name="Discount">Discount</string>
+    <string name="Delivery">Delivery Fee</string>
+    <string name="GrandTotal">Total</string>
+
+
+
+
+
 
     <string name="SouthSideMarket">South Side Market</string>
     <string name="West_Side">West Side Market</string>
