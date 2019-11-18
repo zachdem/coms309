@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void verifyCredentials(String netId, String password) {
+    private void verifyCredentials(final String netId, String password) {
             try {
                 JSONObject jsonBody = new JSONObject();
                 jsonBody.put("netid", netId);
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         System.out.println(response);
                         if (verifyUser(response)) {
+                            User.userNetid = netId;
                             openHomePageActivity();
                         }
                     }
