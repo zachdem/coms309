@@ -80,3 +80,4 @@ unitTests:
   script:
     - cd Frontend
     - ./gradlew test
+
