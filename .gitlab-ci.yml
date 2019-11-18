@@ -35,7 +35,7 @@ maven-test:
 autoDeploy:
   stage: autodeploy
   tags:
-   - springboot_tag
+    - springboot_tag
   script:
     - cd Backend/spring-boot-project
     - mvn package
