@@ -43,10 +43,14 @@
     <string name="Discount">Discount</string>
     <string name="Delivery">Delivery Fee</string>
     <string name="GrandTotal">Total</string>
-
-
-
-
+    <string name="Runner_Page">Runners HomePage</string>
+    <string name="Run_Page">Pending Orders Page</string>
+    <string name="Preview_Page">Order Preview Page</string>
+    <string name="PickUp">Pick Up Order</string>
+    <string name="Name">Name:</string>
+    <string name="Order">Full Order:</string>
+    <string name="Location">Location of Order:</string>
+    <string name="Totals">Final Total:</string>
 
 
     <string name="SouthSideMarket">South Side Market</string>
