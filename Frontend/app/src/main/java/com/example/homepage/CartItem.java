@@ -7,6 +7,8 @@ public class CartItem {
 
     public String locationName;
 
+    public Double total;
+
     CartItem(String itmName, String itmPrice, String locName){
         itemPrice = Double.parseDouble(itmPrice);
         itemName = itmName;
@@ -16,6 +18,14 @@ public class CartItem {
     @Override
     public String toString(){
         return itemName + " " + itemPrice + " " + locationName;
+    }
+
+    public Double getTotal(){
+        return total;
+    }
+
+    public void setTotal(Double tot){
+        tot = total;
     }
 
 

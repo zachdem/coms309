@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +29,7 @@ import java.util.ArrayList;
 public class New_Location extends AppCompatActivity {
 
     ImageButton cartButton;
+    private Double total = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +86,12 @@ public class New_Location extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String itemDetail = ((ArrayAdapter) Listv.getAdapter()).getItem(position).toString();
-                System.out.println(itemDetail);
-                boolean found = false;
+
+
                 String tempItemPrice;
                 String tempItemName;
                 String tempLocation;
+
                 int index = itemDetail.indexOf('$');
 
                 tempItemPrice = itemDetail.substring(index + 1);
@@ -99,7 +100,10 @@ public class New_Location extends AppCompatActivity {
 
                 CartItem cartItem = new CartItem(tempItemName, tempItemPrice, tempLocation);
                 Cart.cartList.add(cartItem);
-                System.out.println(Cart.cartList);
+
+
+                System.out.println("total = " + total);
+
 
             }
         });
