@@ -1,85 +1,75 @@
 package cyrun.springbootstarter.order;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "order_information")
 public class OrderInformation {
-
+	
 	@Id
-	private Integer order_id;
+	Integer order_id;
+	String first_name;
+	String last_name;
+	String item_name;
+	Double item_price;
+	String location_name;
 	
-	private String first_name;
-	
-	private String last_name;
+	public OrderInformation()
+	{
 		
-	private String item_name;
+	}
 	
-	private double item_price;
-	
-	private String location_name;
-
-	public OrderInformation(String firstName, String lastName, Integer orderID, String itemName, double itemPrice,
-			String locationName) {
-		super();
-		this.first_name = firstName;
-		this.last_name = lastName;
-		this.order_id = orderID;
-		this.item_name = itemName;
-		this.item_price = itemPrice;
-		this.location_name = locationName;
+	public OrderInformation(Integer order_id, String first_name, String last_name, String item_name, Double item_price,
+			String location_name) {
+		this.order_id = order_id;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.item_name = item_name;
+		this.item_price = item_price;
+		this.location_name = location_name;
 	}
-
-	public String getFirstName() {
-		return first_name;
-	}
-
-	public void setFirstName(String firstName) {
-		this.first_name = firstName;
-	}
-
-	public String getLastName() {
-		return last_name;
-	}
-
-	public void setLastName(String lastName) {
-		this.last_name = lastName;
-	}
-
-	public Integer getOrderID() {
+	public Integer getOrder_id() {
 		return order_id;
 	}
-
-	public void setOrderID(Integer orderID) {
-		this.order_id = orderID;
+	public void setOrder_id(Integer order_id) {
+		this.order_id = order_id;
 	}
-
-	public String getItemName() {
+	public String getFirst_name() {
+		return first_name;
+	}
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+	public String getLast_name() {
+		return last_name;
+	}
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+	public String getItem_name() {
 		return item_name;
 	}
-
-	public void setItemName(String itemName) {
-		this.item_name = itemName;
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
 	}
-
-	public double getItemPrice() {
+	public Double getItem_price() {
 		return item_price;
 	}
-
-	public void setItemPrice(double itemPrice) {
-		this.item_price = itemPrice;
+	public void setItem_price(Double item_price) {
+		this.item_price = item_price;
 	}
-
-	public String getLocationName() {
+	public String getLocation_name() {
 		return location_name;
 	}
-
-	public void setLocationName(String locationName) {
-		this.location_name = locationName;
+	public void setLocation_name(String location_name) {
+		this.location_name = location_name;
 	}
+	
+	
+	
+	
 	
 	
 	

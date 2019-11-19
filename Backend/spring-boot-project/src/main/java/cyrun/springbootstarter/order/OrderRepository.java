@@ -26,6 +26,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			"AND t3.netid = ?3", nativeQuery = true)
 	public void sendOrderItem(String itemName, String locationName, String netid);
 	
+<<<<<<< HEAD
 	@Modifying
 	@Transactional
 	@Query(value = "UPDATE orders_table SET pending_order = 'No', runner_id = " + 
@@ -34,4 +35,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			" WHERE order_id = ?2",nativeQuery = true)
 	public void updateRunner(String netid, Integer order_id);
 	
+=======
+
+>>>>>>> 6acc83dfe305b5e82a042c1975835685ae1c9a96
 }

@@ -9,15 +9,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
-	
+
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
+	@Autowired
+	private OrderInformationRepository orderInfoRepo;
+
+
 	public List<Order> getUserOrders(String netid)
 	{
 		return orderRepository.getUserOrders(netid);
 	}
-	
+
 	public void placeOrder(String order)
 	{
 		JSONArray arr = new JSONArray(order);
@@ -25,7 +29,7 @@ public class OrderService {
 		String item_name = orderItem.getString("item_name");
 		String location_name = orderItem.getString("location_name");
 		String netid = orderItem.getString("netid");
-		
+
 		orderRepository.sendOrderItem(item_name, location_name, netid);
 		/*for(int i = 0; i < arr.length(); i++)
 		{
@@ -37,11 +41,11 @@ public class OrderService {
 			System.out.println(location_name);
 			System.out.println(netid);
 		}*/
-		
+
 		System.out.println(arr);
 	}
 	
-	
+
 	public void updateRunner(String order)
 	{
 		JSONObject confirmation = new JSONObject(order);
