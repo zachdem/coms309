@@ -23,6 +23,8 @@
         <activity android:name=".UserSignUpActivity" />
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".LocationsMenuActivity" />
+        <activity android:name=".CartActivity" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
