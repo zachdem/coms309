@@ -13,11 +13,13 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
 	
+	@Autowired
+	private OrderInformationRepository orderInfoRepo;
+	
 	public List<Order> getUserOrders(String netid)
 	{
 		return orderRepository.getUserOrders(netid);
 	}
-	
 	
 	public void placeOrder(String order)
 	{
@@ -40,5 +42,12 @@ public class OrderService {
 		}*/
 		
 		System.out.println(arr);
+	}
+	
+	
+	public String getActiveOrders()
+	{
+		System.out.println(orderInfoRepo.getActiveOrders());
+		return "received";
 	}
 }

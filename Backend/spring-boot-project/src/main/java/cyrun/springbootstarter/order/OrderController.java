@@ -27,5 +27,11 @@ public class OrderController {
 			orderService.placeOrder(order);
 			return "received";
 		}
+		
+		@RequestMapping(method = RequestMethod.GET , value = "/orders/active_orders")
+		public String getActiveOrders() {
+			return orderService.getActiveOrders();
+		}
+
 
 }
