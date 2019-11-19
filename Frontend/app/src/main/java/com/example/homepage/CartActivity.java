@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -29,9 +31,9 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private Button placeOrder;
-
+    private TextView totaltxt;
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/orders/place_order";
-
+    private Double total = 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,18 @@ public class CartActivity extends AppCompatActivity {
         adapter = new MyAdapter();
         recyclerView.setAdapter(adapter);
 
+        totaltxt = findViewById(R.id.totalField);
+
+        total = 0.0;
+        for(int i = 0; i < Cart.cartList.size(); i++){
+            total += Cart.cartList.get(i).itemPrice;
+        }
+
+        totaltxt.setText("$" + total.toString());
+
+        if(totaltxt.length() == 5){
+            totaltxt.setText("$" + total.toString() + "0");
+        }
         placeOrder = findViewById(R.id.placeOrderButton);
 
         placeOrder.setOnClickListener(new View.OnClickListener() {
@@ -55,16 +69,21 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
+
     private void sendOrder() {
         try {
             JSONArray jsonArray = new JSONArray();
             for (int i = 0; i < Cart.cartList.size(); i++) {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("item_name", Cart.cartList.get(i).itemName);
-                jsonObject.put("location_name", "clydes");
+                jsonObject.put("location_name", Cart.cartList.get(i).locationName);
                 jsonObject.put("netid", User.userNetid);
                 jsonArray.put(jsonObject);
+
+
             }
+
+            System.out.println(jsonArray.toString());
 
             final String requestBody = jsonArray.toString();
 

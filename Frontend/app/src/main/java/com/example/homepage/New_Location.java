@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +29,7 @@ import java.util.ArrayList;
 public class New_Location extends AppCompatActivity {
 
     ImageButton cartButton;
+    private Double total = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class New_Location extends AppCompatActivity {
         setContentView(R.layout.activity_new__location);
 
         TextView Pagetitle  = findViewById(R.id.textView2);
+
         urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/"+getIntent().getStringExtra("URL");
 
         cartButton = findViewById(R.id.cartButton);
@@ -85,18 +86,24 @@ public class New_Location extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String itemDetail = ((ArrayAdapter) Listv.getAdapter()).getItem(position).toString();
-                System.out.println(itemDetail);
-                boolean found = false;
+
+
                 String tempItemPrice;
                 String tempItemName;
+                String tempLocation;
 
                 int index = itemDetail.indexOf('$');
 
                 tempItemPrice = itemDetail.substring(index + 1);
                 tempItemName = itemDetail.substring(0, index - 1);
-                CartItem cartItem = new CartItem(tempItemName, tempItemPrice);
+                tempLocation = getIntent().getStringExtra("URL");
+
+                CartItem cartItem = new CartItem(tempItemName, tempItemPrice, tempLocation);
                 Cart.cartList.add(cartItem);
-                System.out.println(Cart.cartList);
+
+
+                System.out.println("total = " + total);
+
 
             }
         });
@@ -112,7 +119,6 @@ public class New_Location extends AppCompatActivity {
     public boolean makeJsonArrayRequest(final ArrayList<String> tl, final ArrayAdapter<String> arrAdapt){
         // making the new object
 
-
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonObj, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -121,21 +127,24 @@ public class New_Location extends AppCompatActivity {
                     JSONObject object = response.optJSONObject(i);
                     String itemNameString = object.optString("item_name");
                     String itemPriceString = object.optString("item_price");
+
                     String format = String.format("%1$s $%2$s0", itemNameString, itemPriceString);
                     if(itemNameString != null){
                         tl.add(format);
                         System.out.println(format);
                     }
                 }
-
                 arrAdapt.notifyDataSetChanged();
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error.toString());
+
             }
         });
+
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
         return true;
     }
