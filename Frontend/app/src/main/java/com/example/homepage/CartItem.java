@@ -7,7 +7,6 @@ public class CartItem {
 
 
 
-
     CartItem(String itmName, String itmPrice){
         itemPrice = Double.parseDouble(itmPrice);
         itemName = itmName;

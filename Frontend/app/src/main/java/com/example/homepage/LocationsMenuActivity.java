@@ -33,6 +33,7 @@ public class LocationsMenuActivity extends AppCompatActivity {
                     intent.putExtra("Item", "Clydes");
                     intent.putExtra("URL", "clydes");
                     startActivity(intent);
+                    System.out.println("Clydes Clicked");
                 }
             });
 

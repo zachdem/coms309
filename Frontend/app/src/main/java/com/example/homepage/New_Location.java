@@ -29,22 +29,23 @@ import java.util.ArrayList;
 
 public class New_Location extends AppCompatActivity {
 
-    TextView Pagetitle  = findViewById(R.id.textView2);
     ImageButton cartButton;
-    String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/"+getIntent().getStringExtra("URL");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new__location);
 
+        TextView Pagetitle  = findViewById(R.id.textView2);
+        urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/"+getIntent().getStringExtra("URL");
 
         cartButton = findViewById(R.id.cartButton);
 
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCartActivity();
+                //openCartActivity();
+                System.out.println("clicked button");
             }
         });
 
@@ -103,7 +104,7 @@ public class New_Location extends AppCompatActivity {
 
     }
 
-
+    String urlJsonObj = " ";
 
     /**
      * Making the JSON Array request
