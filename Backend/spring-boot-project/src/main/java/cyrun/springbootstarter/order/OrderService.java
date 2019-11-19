@@ -13,9 +13,6 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
 	
-	@Autowired
-	private OrderInformationRepository orderInfoRepo;
-	
 	public List<Order> getUserOrders(String netid)
 	{
 		return orderRepository.getUserOrders(netid);
@@ -47,7 +44,7 @@ public class OrderService {
 	
 	public String getActiveOrders()
 	{
-		System.out.println(orderInfoRepo.getActiveOrders());
+		//System.out.println(orderRepository.getActiveOrders());
 		return "received";
 	}
 }

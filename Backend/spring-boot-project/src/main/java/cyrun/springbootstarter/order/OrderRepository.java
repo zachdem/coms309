@@ -26,6 +26,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			"AND t3.netid = ?3", nativeQuery = true)
 	public void sendOrderItem(String itemName, String locationName, String netid);
 	
-	
 
 }
