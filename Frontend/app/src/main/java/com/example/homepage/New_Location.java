@@ -119,7 +119,6 @@ public class New_Location extends AppCompatActivity {
     public boolean makeJsonArrayRequest(final ArrayList<String> tl, final ArrayAdapter<String> arrAdapt){
         // making the new object
 
-
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonObj, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -135,15 +134,17 @@ public class New_Location extends AppCompatActivity {
                         System.out.println(format);
                     }
                 }
-
                 arrAdapt.notifyDataSetChanged();
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error.toString());
+
             }
         });
+
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
         return true;
     }
