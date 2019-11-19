@@ -13,6 +13,10 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
 	
+	@Autowired
+	private OrderInformationRepository orderInfoRepo;
+	
+	
 	public List<Order> getUserOrders(String netid)
 	{
 		return orderRepository.getUserOrders(netid);
@@ -44,7 +48,20 @@ public class OrderService {
 	
 	public String getActiveOrders()
 	{
-		//System.out.println(orderRepository.getActiveOrders());
-		return "received";
+		List<OrderInformation> orderInfoList = orderInfoRepo.getActiveOrders();
+		
+		JSONArray arr = new JSONArray();
+	    for (OrderInformation i : orderInfoList)
+	    {
+	         JSONObject obj = new JSONObject();
+	         obj.put("order_id", i.getOrder_id());
+	         obj.put("first_name", i.getFirst_name());
+	         obj.put("last_name", i.getLast_name());
+	         obj.put("item_name", i.getItem_name());
+	         obj.put("item_price", i.getItem_price());
+	         obj.put("location_name", i.getLocation_name());
+	         arr.put(obj);
+	    }
+	    return arr.toString();
 	}
 }
