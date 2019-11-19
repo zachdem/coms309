@@ -37,6 +37,7 @@ public class New_Location extends AppCompatActivity {
         setContentView(R.layout.activity_new__location);
 
         TextView Pagetitle  = findViewById(R.id.textView2);
+
         urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/"+getIntent().getStringExtra("URL");
 
         cartButton = findViewById(R.id.cartButton);
@@ -89,12 +90,14 @@ public class New_Location extends AppCompatActivity {
                 boolean found = false;
                 String tempItemPrice;
                 String tempItemName;
-
+                String tempLocation;
                 int index = itemDetail.indexOf('$');
 
                 tempItemPrice = itemDetail.substring(index + 1);
                 tempItemName = itemDetail.substring(0, index - 1);
-                CartItem cartItem = new CartItem(tempItemName, tempItemPrice);
+                tempLocation = getIntent().getStringExtra("URL");
+
+                CartItem cartItem = new CartItem(tempItemName, tempItemPrice, tempLocation);
                 Cart.cartList.add(cartItem);
                 System.out.println(Cart.cartList);
 
@@ -121,6 +124,7 @@ public class New_Location extends AppCompatActivity {
                     JSONObject object = response.optJSONObject(i);
                     String itemNameString = object.optString("item_name");
                     String itemPriceString = object.optString("item_price");
+
                     String format = String.format("%1$s $%2$s0", itemNameString, itemPriceString);
                     if(itemNameString != null){
                         tl.add(format);

@@ -61,11 +61,12 @@ public class CartActivity extends AppCompatActivity {
             for (int i = 0; i < Cart.cartList.size(); i++) {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("item_name", Cart.cartList.get(i).itemName);
-                jsonObject.put("location_name", "clydes");
+                jsonObject.put("location_name", Cart.cartList.get(i).locationName);
                 jsonObject.put("netid", User.userNetid);
                 jsonArray.put(jsonObject);
             }
 
+            System.out.println(jsonArray.toString());
             final String requestBody = jsonArray.toString();
 
             RequestQueue requestQueue = Volley.newRequestQueue(this);
