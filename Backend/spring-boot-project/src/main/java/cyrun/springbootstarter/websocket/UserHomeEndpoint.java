@@ -70,8 +70,7 @@ public class UserHomeEndpoint {
 
 		for (Map.Entry<Session, String> connectedUser : connectedUsers.entrySet()) {
 			Gson g = new Gson();
-			String userOrders = g.toJson(orderService.getUserOrders("test_netid"));
-
+			String userOrders = g.toJson(orderService.getUserOrders(connectedUser.getValue()));
 			connectedUser.getKey().getBasicRemote().sendText(userOrders);
 		}
 
