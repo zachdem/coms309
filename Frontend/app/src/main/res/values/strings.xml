@@ -34,7 +34,7 @@
     <string name="Hawthorn_Page">Hawthorn</string>
     <string name="Runnerss">Runner SignUp</string>
 
-    <string name="CartText">Runner SignUp</string>
+    <string name="CartText">Cart</string>
     <string name="PlaceOrder">Place Order</string>
     <string name="Items">Items</string>
     <string name="Total">Total</string>
@@ -43,6 +43,7 @@
     <string name="Discount">Discount</string>
     <string name="Delivery">Delivery Fee</string>
     <string name="GrandTotal">Total</string>
+    <string name="Runner_Page">Runners HomePage</string>
 
 
 
