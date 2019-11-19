@@ -3,6 +3,7 @@ package cyrun.springbootstarter.order;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,23 @@ public class OrderService {
 	public void placeOrder(String order)
 	{
 		JSONArray arr = new JSONArray(order);
-		for(int i = 0; i < arr.length(); i++)
+		JSONObject orderItem = arr.getJSONObject(0);
+		String item_name = orderItem.getString("item_name");
+		String location_name = orderItem.getString("location_name");
+		String netid = orderItem.getString("netid");
+		
+		orderRepository.sendOrderItem(item_name, location_name, netid);
+		/*for(int i = 0; i < arr.length(); i++)
 		{
-			arr.getJSONArray(i);
-			//Send each item of the order to the DB
-		}
+			JSONObject orderItem = arr.getJSONObject(i);
+			String item_name = orderItem.getString("item_name");
+			String location_name = orderItem.getString("location_name");
+			String netid = orderItem.getString("netid");
+			System.out.println(item_name);
+			System.out.println(location_name);
+			System.out.println(netid);
+		}*/
+		
 		System.out.println(arr);
 	}
 }
