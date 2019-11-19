@@ -8,29 +8,14 @@
     tools:context=".MainActivity">
 
 
-    <ListView
-        android:id="@+id/order_list_view"
-        android:layout_width="399dp"
-        android:layout_height="265dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="357dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="109dp"
-        android:focusableInTouchMode="false"
-        android:isScrollContainer="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/chat_button"
-        android:layout_width="88dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="633dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="47dp"
+        android:layout_width="136dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="624dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="40dp"
         android:backgroundTint="@color/colorPrimaryDark"
         android:fontFamily="sans-serif-black"
         android:text="@string/Chat"
@@ -86,8 +71,10 @@
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/hungry_text"

@@ -1,5 +1,9 @@
 package com.example.homepage;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,14 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -25,17 +24,21 @@ import com.example.homepage.app.AppController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class ClydesMenuActivity extends AppCompatActivity {
+public class New_Location extends AppCompatActivity {
 
-    private ImageButton cartButton;
-    Cart cart = new Cart();
+    ImageButton cartButton;
+    private Double total = 0.0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clydes_menu);
+        setContentView(R.layout.activity_new__location);
+
+        TextView Pagetitle  = findViewById(R.id.textView2);
+
+        urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/"+getIntent().getStringExtra("URL");
 
         cartButton = findViewById(R.id.cartButton);
 
@@ -43,8 +46,16 @@ public class ClydesMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openCartActivity();
+                System.out.println("clicked button");
             }
         });
+
+
+        Pagetitle.setText(getIntent().getStringExtra("Item"));
+        Pagetitle.setTextColor(Color.parseColor("#C30107"));
+
+
+
         final ArrayList<String> tubeLines = new ArrayList<>();
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tubeLines){
@@ -64,43 +75,49 @@ public class ClydesMenuActivity extends AppCompatActivity {
                 return view;
             }
         };
-        final ListView lv = findViewById(R.id.clydesListView);
-        lv.setAdapter(arrayAdapter);
-        makeJsonArrayRequest(tubeLines,arrayAdapter);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final ListView Listv = findViewById(R.id.allLists);
+
+        Listv.setAdapter(arrayAdapter);
+
+        makeJsonArrayRequest(tubeLines, arrayAdapter);
+
+        Listv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String itemDetail = ((ArrayAdapter) lv.getAdapter()).getItem(position).toString();
-                System.out.println(itemDetail);
-                boolean found = false;
+                String itemDetail = ((ArrayAdapter) Listv.getAdapter()).getItem(position).toString();
+
+
                 String tempItemPrice;
                 String tempItemName;
+                String tempLocation;
 
                 int index = itemDetail.indexOf('$');
 
                 tempItemPrice = itemDetail.substring(index + 1);
                 tempItemName = itemDetail.substring(0, index - 1);
-                CartItem cartItem = new CartItem(tempItemName, tempItemPrice);
+                tempLocation = getIntent().getStringExtra("URL");
+
+                CartItem cartItem = new CartItem(tempItemName, tempItemPrice, tempLocation);
                 Cart.cartList.add(cartItem);
-                System.out.println(Cart.cartList);
+
+
+                System.out.println("total = " + total);
+
 
             }
-            });
-
+        });
 
 
     }
 
-    private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/clydes";
-
+    String urlJsonObj = " ";
 
     /**
      * Making the JSON Array request
      */
     public boolean makeJsonArrayRequest(final ArrayList<String> tl, final ArrayAdapter<String> arrAdapt){
         // making the new object
-
 
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonObj, null, new Response.Listener<JSONArray>() {
             @Override
@@ -110,24 +127,30 @@ public class ClydesMenuActivity extends AppCompatActivity {
                     JSONObject object = response.optJSONObject(i);
                     String itemNameString = object.optString("item_name");
                     String itemPriceString = object.optString("item_price");
+
                     String format = String.format("%1$s $%2$s0", itemNameString, itemPriceString);
                     if(itemNameString != null){
                         tl.add(format);
                         System.out.println(format);
                     }
                 }
-
                 arrAdapt.notifyDataSetChanged();
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error.toString());
+
             }
         });
+
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
         return true;
     }
+
+
+
 
     public void openCartActivity(){
         Intent intent = new Intent(this, CartActivity.class);
@@ -137,4 +160,9 @@ public class ClydesMenuActivity extends AppCompatActivity {
 
 
 
-}
+
+
+    }
+
+
+

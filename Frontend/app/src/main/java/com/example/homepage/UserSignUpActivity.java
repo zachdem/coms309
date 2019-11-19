@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,10 +26,13 @@ import java.io.UnsupportedEncodingException;
 public class UserSignUpActivity extends AppCompatActivity {
 
 
+
+
     private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/user_signup";
+    private String getUrlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/runner_signup";
 
     private TextView txtResponse;
-    private Button signUpButton;
+    private Button signUpButton, Runner;
     private EditText firstNameEtext, lastNameEtext, userNameEtext, passwordEtext, isuIDEtext, routingNumberEtext, accountNumberEtext, netIDEtext;
 
     @Override
@@ -45,6 +49,7 @@ public class UserSignUpActivity extends AppCompatActivity {
         accountNumberEtext = findViewById(R.id.account_num_etext);
         netIDEtext = findViewById(R.id.netid_etext);
         signUpButton = findViewById(R.id.sign_up_button);
+        Runner = findViewById(R.id.Runner);
 
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +66,22 @@ public class UserSignUpActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+
+        Runner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //We have two boxes - if the person clicks to be a runner then they will get this request.
+                if (verifySignupInput(firstNameEtext.getText().toString(), lastNameEtext.getText().toString(), userNameEtext.getText().toString(),
+                        passwordEtext.getText().toString(), isuIDEtext.getText().toString(), routingNumberEtext.getText().toString(), accountNumberEtext.getText().toString(),
+                        netIDEtext.getText().toString()) == true) {
+                    Integer isuID = Integer.parseInt(isuIDEtext.getText().toString());
+                    Integer routingNumber = Integer.parseInt(routingNumberEtext.getText().toString());
+                    Integer accountNumber = Integer.parseInt(accountNumberEtext.getText().toString());
+                    sendRunnerSignUpRequest(firstNameEtext.getText().toString(), lastNameEtext.getText().toString(), userNameEtext.getText().toString(), passwordEtext.getText().toString(), isuID, routingNumber, accountNumber, netIDEtext.getText().toString());
+                }
+            }
+    });
+}
 
     private void sendSignUpRequest(String firstName, String lastName, String username, String password, Integer isuID, Integer routingNumber, Integer accountNumber, String netID) {
         try {
@@ -77,6 +97,57 @@ public class UserSignUpActivity extends AppCompatActivity {
             final String requestBody = jsonBody.toString();
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             StringRequest postRequest = new StringRequest(Request.Method.POST, urlJsonObj, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    System.out.println(response);
+                    if (response.equals("signup_success")) {
+                        openMainActivity();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println(error);
+                }
+            }) {
+
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                        return null;
+                    }
+                }
+            };
+            requestQueue.add(postRequest);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void sendRunnerSignUpRequest(String firstName, String lastName, String username, String password, Integer isuID, Integer routingNumber, Integer accountNumber, String netID) {
+        try {
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("first_name", firstName);
+            jsonBody.put("last_name", lastName);
+            jsonBody.put("username", username);
+            jsonBody.put("password", password);
+            jsonBody.put("isu_id", isuID);
+            jsonBody.put("routing_number", routingNumber);
+            jsonBody.put("account_number", accountNumber);
+            jsonBody.put("netid", netID);
+            final String requestBody = jsonBody.toString();
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, getUrlJsonObj, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     System.out.println(response);
