@@ -13,9 +13,6 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
 	
-	@Autowired
-	private OrderInformationRepository orderInfoRepo;
-	
 	public List<Order> getUserOrders(String netid)
 	{
 		return orderRepository.getUserOrders(netid);
@@ -45,9 +42,10 @@ public class OrderService {
 	}
 	
 	
-	public String getActiveOrders()
+	public void updateRunner(String order)
 	{
-		System.out.println(orderInfoRepo.getActiveOrders());
-		return "received";
+		JSONObject confirmation = new JSONObject(order);
+		System.out.println(confirmation);
+		orderRepository.updateRunner(confirmation.getString("netid"), Integer.parseInt(confirmation.getString("order_id")));
 	}
 }

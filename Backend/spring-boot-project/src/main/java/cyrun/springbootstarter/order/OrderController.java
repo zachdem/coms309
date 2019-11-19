@@ -28,9 +28,17 @@ public class OrderController {
 			return "received";
 		}
 		
-		@RequestMapping(method = RequestMethod.GET , value = "/orders/active_orders")
+		/*@RequestMapping(method = RequestMethod.GET , value = "/orders/active_orders")
 		public String getActiveOrders() {
 			return orderService.getActiveOrders();
+		} */
+		
+		@RequestMapping(method = RequestMethod.POST, value = "/orders/updateRunner")
+		public void updateRunners(@RequestBody String order)
+		{
+			System.out.println(order);
+			orderService.updateRunner(order);
+
 		}
 
 
