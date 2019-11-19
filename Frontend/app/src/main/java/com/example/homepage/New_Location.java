@@ -44,7 +44,7 @@ public class New_Location extends AppCompatActivity {
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //openCartActivity();
+                openCartActivity();
                 System.out.println("clicked button");
             }
         });
