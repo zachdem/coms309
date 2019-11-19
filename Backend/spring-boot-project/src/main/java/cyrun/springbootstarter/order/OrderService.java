@@ -9,19 +9,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
-
+	
 	@Autowired
 	private OrderRepository orderRepository;
-
+	
 	@Autowired
 	private OrderInformationRepository orderInfoRepo;
-
-
+	
+	
 	public List<Order> getUserOrders(String netid)
 	{
 		return orderRepository.getUserOrders(netid);
 	}
-
+	
 	public void placeOrder(String order)
 	{
 		JSONArray arr = new JSONArray(order);
@@ -29,7 +29,7 @@ public class OrderService {
 		String item_name = orderItem.getString("item_name");
 		String location_name = orderItem.getString("location_name");
 		String netid = orderItem.getString("netid");
-
+		
 		orderRepository.sendOrderItem(item_name, location_name, netid);
 		/*for(int i = 0; i < arr.length(); i++)
 		{
@@ -41,15 +41,35 @@ public class OrderService {
 			System.out.println(location_name);
 			System.out.println(netid);
 		}*/
-
+		
 		System.out.println(arr);
 	}
 	
-
+	
+	public String getActiveOrders()
+	{
+		List<OrderInformation> orderInfoList = orderInfoRepo.getActiveOrders();
+		
+		JSONArray arr = new JSONArray();
+	    for (OrderInformation i : orderInfoList)
+	    {
+	         JSONObject obj = new JSONObject();
+	         obj.put("order_id", i.getOrder_id());
+	         obj.put("first_name", i.getFirst_name());
+	         obj.put("last_name", i.getLast_name());
+	         obj.put("item_name", i.getItem_name());
+	         obj.put("item_price", i.getItem_price());
+	         obj.put("location_name", i.getLocation_name());
+	         arr.put(obj);
+	    }
+	    return arr.toString();
+	}
+	
+	
 	public void updateRunner(String order)
 	{
 		JSONObject confirmation = new JSONObject(order);
-		System.out.println(confirmation);
 		orderRepository.updateRunner(confirmation.getString("netid"), Integer.parseInt(confirmation.getString("order_id")));
 	}
+
 }
