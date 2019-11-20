@@ -46,7 +46,6 @@ public class New_Location extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openCartActivity();
-                System.out.println("clicked button");
             }
         });
 
@@ -102,8 +101,6 @@ public class New_Location extends AppCompatActivity {
                 Cart.cartList.add(cartItem);
 
 
-                System.out.println("total = " + total);
-
 
             }
         });
@@ -118,11 +115,13 @@ public class New_Location extends AppCompatActivity {
      */
     public boolean makeJsonArrayRequest(final ArrayList<String> tl, final ArrayAdapter<String> arrAdapt){
         // making the new object
-
         final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlJsonObj, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 System.out.println(response);
+
+                checkURL(urlJsonObj);
+
                 for (int i = 0; i < response.length(); i++){
                     JSONObject object = response.optJSONObject(i);
                     String itemNameString = object.optString("item_name");
@@ -131,7 +130,7 @@ public class New_Location extends AppCompatActivity {
                     String format = String.format("%1$s $%2$s0", itemNameString, itemPriceString);
                     if(itemNameString != null){
                         tl.add(format);
-                        System.out.println(format);
+                        //System.out.println(format);
                     }
                 }
                 arrAdapt.notifyDataSetChanged();
@@ -146,6 +145,7 @@ public class New_Location extends AppCompatActivity {
         });
 
         AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+
         return true;
     }
 
@@ -155,7 +155,12 @@ public class New_Location extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public boolean checkURL(String url){
+        if(url == urlJsonObj){
+            return true;
+        }
+        return false;
+    }
 
 
 
