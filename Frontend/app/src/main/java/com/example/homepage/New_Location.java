@@ -150,8 +150,6 @@ public class New_Location extends AppCompatActivity {
     }
 
 
-
-
     public void openCartActivity(){
         Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
