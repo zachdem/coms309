@@ -51,6 +51,7 @@ public class CartActivity extends AppCompatActivity {
         totaltxt = findViewById(R.id.totalField);
 
         total = 0.0;
+
         for(int i = 0; i < Cart.cartList.size(); i++){
             total += Cart.cartList.get(i).itemPrice;
         }
@@ -93,7 +94,7 @@ public class CartActivity extends AppCompatActivity {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, urlJsonObj, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    System.out.println(response);
+                    jsonResponse(response);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -124,5 +125,11 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
+    public boolean jsonResponse(String response){
+        if(response == "recieved"){
+            return true;
+        }
+        return false;
+    }
 
 }
