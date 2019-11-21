@@ -62,7 +62,7 @@ public class ChatActivity extends AppCompatActivity {
 
         // Create a WebSocket. The timeout value set above is used.
         try {
-            ws = factory.createSocket("ws://coms-309-ks-6.misc.iastate.edu:8080/user");
+            ws = factory.createSocket("ws://" + GlobalAppInfo.serverName + ":8080/user");
 
             ws.addListener(new WebSocketAdapter() {
                 @Override

@@ -29,7 +29,7 @@ public class LocationsMenuActivity extends AppCompatActivity {
             clydesButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    Intent intent = new Intent(LocationsMenuActivity.this, NewLocation.class);
                     intent.putExtra("Item", "Clydes");
                     intent.putExtra("URL", "clydes");
                     startActivity(intent);
@@ -40,7 +40,7 @@ public class LocationsMenuActivity extends AppCompatActivity {
             westSideButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    Intent intent = new Intent(LocationsMenuActivity.this, NewLocation.class);
                     intent.putExtra("Item", "West Side Market");
                     intent.putExtra("URL", "west_side_market");
                     startActivity(intent);
@@ -51,7 +51,7 @@ public class LocationsMenuActivity extends AppCompatActivity {
             southSideButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    Intent intent = new Intent(LocationsMenuActivity.this, NewLocation.class);
                     intent.putExtra("Item", "South Side Market");
                     intent.putExtra("URL", "south_side_market");
                     startActivity(intent);
@@ -61,7 +61,7 @@ public class LocationsMenuActivity extends AppCompatActivity {
             HawthornButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    Intent intent = new Intent(LocationsMenuActivity.this, NewLocation.class);
                     intent.putExtra("Item", "Hawthorn Market");
                     intent.putExtra("URL", "hawthorn");
                     startActivity(intent);
@@ -71,7 +71,7 @@ public class LocationsMenuActivity extends AppCompatActivity {
             eastSideButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    Intent intent = new Intent(LocationsMenuActivity.this, NewLocation.class);
                     intent.putExtra("Item", "East Side Market");
                     intent.putExtra("URL", "east_side_market");
                     startActivity(intent);
@@ -81,7 +81,7 @@ public class LocationsMenuActivity extends AppCompatActivity {
             whirlyBirdsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    Intent intent = new Intent(LocationsMenuActivity.this, NewLocation.class);
                     intent.putExtra("Item", "WhirlyBirds Market");
                     intent.putExtra("URL", "whirlybirds");
                     startActivity(intent);
@@ -91,7 +91,7 @@ public class LocationsMenuActivity extends AppCompatActivity {
             MUbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    Intent intent = new Intent(LocationsMenuActivity.this, NewLocation.class);
                     intent.putExtra("Item", "Memorial Union");
                     intent.putExtra("URL", "memorial_union_market_and_cafe");
                     startActivity(intent);
@@ -101,7 +101,7 @@ public class LocationsMenuActivity extends AppCompatActivity {
             bookendsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(LocationsMenuActivity.this, New_Location.class);
+                    Intent intent = new Intent(LocationsMenuActivity.this, NewLocation.class);
                     intent.putExtra("Item", "Bookends Cafe");
                     intent.putExtra("URL", "bookends_cafe");
                     startActivity(intent);
