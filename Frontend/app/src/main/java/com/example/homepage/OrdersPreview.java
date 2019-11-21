@@ -22,7 +22,7 @@ import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
 
-public class Orders_Preview extends AppCompatActivity {
+public class OrdersPreview extends AppCompatActivity {
 
 
     private String JsonUrlPost = " ";

@@ -33,7 +33,7 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Button placeOrder;
     private TextView totaltxt;
-    private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/orders/place_order";
+    private String urlJsonObj = "http://" + GlobalAppInfo.serverName + ":8080/orders/place_order";
     private Double total = 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

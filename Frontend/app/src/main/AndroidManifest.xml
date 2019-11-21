@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Orders_Preview"></activity>
-        <activity android:name=".Runner_pendingOrders" />
-        <activity android:name=".New_Location" />
-        <activity android:name=".Runners_Page" />
+        <activity android:name=".OrdersPreview"></activity>
+        <activity android:name=".RunnerPendingOrders" />
+        <activity android:name=".NewLocation" />
+        <activity android:name=".RunnersPage" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".UserSignUpActivity" />
         <activity android:name=".UserHomeActivity" />
