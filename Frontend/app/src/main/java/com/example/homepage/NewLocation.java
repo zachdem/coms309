@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class New_Location extends AppCompatActivity {
+public class NewLocation extends AppCompatActivity {
 
     ImageButton cartButton;
     private Double total = 0.0;
@@ -38,7 +38,7 @@ public class New_Location extends AppCompatActivity {
 
         TextView Pagetitle  = findViewById(R.id.textView2);
 
-        urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/"+getIntent().getStringExtra("URL");
+        urlJsonObj = "http://" + GlobalAppInfo.serverName + ":8080/" + getIntent().getStringExtra("URL");
 
         cartButton = findViewById(R.id.cartButton);
 

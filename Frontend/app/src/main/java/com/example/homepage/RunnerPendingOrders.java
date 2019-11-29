@@ -14,31 +14,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.homepage.app.AppController;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Runner_pendingOrders extends AppCompatActivity {
+public class RunnerPendingOrders extends AppCompatActivity {
 
 
 
-    private HashMap<String, Runners_Orders> map;
-    private String JsonUrl = "http://coms-309-ks-6.misc.iastate.edu:8080/orders/active_orders";
+    private HashMap<String, RunnersOrders> map;
+    private String JsonUrl = "http://" + GlobalAppInfo.serverName + ":8080/orders/active_orders";
 
 
     @Override
@@ -90,7 +84,7 @@ public class Runner_pendingOrders extends AppCompatActivity {
 
 
 
-                Intent intent = new Intent(Runner_pendingOrders.this, Orders_Preview.class);
+                Intent intent = new Intent(RunnerPendingOrders.this, OrdersPreview.class);
                 intent.putExtra("OrderID", OrderNum);
                 intent.putExtra("Name", map.get(OrderNum).firstname + " " + map.get(OrderNum).lastname);
                 intent.putExtra("item_name", map.get(OrderNum).item_name);
@@ -119,7 +113,7 @@ public class Runner_pendingOrders extends AppCompatActivity {
                     String line3 = object.optString("last_name");
                     String line4 = object.optString("item_name");
 
-                    map.put(line5, new Runners_Orders(line2, line3, line, line4, line1));
+                    map.put(line5, new RunnersOrders(line2, line3, line, line4, line1));
 
                     String format = String.format("Order: %1$s Name: %2$s Location: %3$s", line5, line2, line);
                     if(line != null){

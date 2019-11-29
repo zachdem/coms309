@@ -22,10 +22,10 @@ import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
 
-public class Orders_Preview extends AppCompatActivity {
+public class OrdersPreview extends AppCompatActivity {
 
 
-    private String JsonUrlPost = " ";
+    private String JsonUrlPost = "http://" + GlobalAppInfo.serverName + ":8080/orders/updateRunner";
 
 
     // This page is strictly for the runners and viewing their pending orders that were sent from the users.

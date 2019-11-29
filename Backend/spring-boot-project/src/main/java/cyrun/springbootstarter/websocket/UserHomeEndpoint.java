@@ -60,7 +60,7 @@ public class UserHomeEndpoint {
 	public void onError(Throwable throwable) {
 	}
 
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 1000)
 	public void pushUpdatedOrders() throws IOException {
 		this.sendMessage();
 		
