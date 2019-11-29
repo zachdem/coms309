@@ -9,11 +9,11 @@ import javax.persistence.Table;
 public class Order {
 
 	@Id
-	private int order_id;
-	private int customer_id;
-	private int runner_id;
+	private Integer order_id;
+	private Integer customer_id;
+	private Integer runner_id;
 	private String pending_order;
-	private int item_id;
+	private Integer item_id;
 	private String order_finalized;
 	private String delivery_address;
 
@@ -21,7 +21,7 @@ public class Order {
 
 	}
 
-	public Order(int order_id, int customer_id, int runner_id, String pending_order, int item_id,
+	public Order(Integer order_id, Integer customer_id, Integer runner_id, String pending_order, Integer item_id,
 			String order_finalized, String delivery_address) {
 		this.order_id = order_id;
 		this.customer_id = customer_id;
@@ -32,27 +32,27 @@ public class Order {
 		this.delivery_address = delivery_address;
 	}
 
-	public int getOrder_id() {
+	public Integer getOrder_id() {
 		return order_id;
 	}
 
-	public void setOrder_id(int order_id) {
+	public void setOrder_id(Integer order_id) {
 		this.order_id = order_id;
 	}
 
-	public int getCustomer_id() {
+	public Integer getCustomer_id() {
 		return customer_id;
 	}
 
-	public void setCustomer_id(int customer_id) {
+	public void setCustomer_id(Integer customer_id) {
 		this.customer_id = customer_id;
 	}
 
-	public int getRunner_id() {
+	public Integer getRunner_id() {
 		return runner_id;
 	}
 
-	public void setRunner_id(int runner_id) {
+	public void setRunner_id(Integer runner_id) {
 		this.runner_id = runner_id;
 	}
 
@@ -64,11 +64,11 @@ public class Order {
 		this.pending_order = pending_order;
 	}
 
-	public int getItem_id() {
+	public Integer getItem_id() {
 		return item_id;
 	}
 
-	public void setItem_id(int item_id) {
+	public void setItem_id(Integer item_id) {
 		this.item_id = item_id;
 	}
 

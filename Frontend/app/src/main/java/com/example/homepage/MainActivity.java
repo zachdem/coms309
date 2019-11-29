@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,13 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Button loginButton, signUpButton;
     private EditText netidEditText, passwordEditText;
-    private TextView textview;
 
 
-    private String urlJsonObj = "http://coms-309-ks-6.misc.iastate.edu:8080/userlogin";
-
-    private static String TAG = MainActivity.class.getSimpleName();
-
+    private String userLoginURL = "http://" + GlobalAppInfo.serverName + ":8080/userlogin";
+    private String runnerLoginURL = "http://" + GlobalAppInfo.serverName + ":8080/runnerlogin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +39,21 @@ public class MainActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.sign_up_button);
         netidEditText = findViewById(R.id.net_id_etext);
         passwordEditText = findViewById(R.id.password_etext);
-        //textview = findViewById(R.id.textView);
-        //textview.append("Incorrect netid/password!");
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
+
                 verifyCredentials(netidEditText.getText().toString(), passwordEditText.getText().toString());
+
+
+                verifyCredentialsRunner(netidEditText.getText().toString(), passwordEditText.getText().toString());
             }
+
         });
+
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,50 +63,106 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void verifyCredentials(String netId, String password) {
-            try {
-                JSONObject jsonBody = new JSONObject();
-                jsonBody.put("netid", netId);
-                jsonBody.put("password", password);
-                final String requestBody = jsonBody.toString();
-                RequestQueue requestQueue = Volley.newRequestQueue(this);
-                StringRequest postRequest = new StringRequest(Request.Method.POST, urlJsonObj, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        System.out.println(response);
-                        if (verifyUser(response)) {
-                            openHomePageActivity();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println(error);
-                    }
-                }) {
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //When we leave this activity clear the text fields
+        netidEditText.setText("");
+        passwordEditText.setText("");
+    }
 
-                    @Override
-                    public String getBodyContentType() {
-                        return "application/json; charset=utf-8";
+    private void verifyCredentials(final String netId, String password) {
+        try {
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("netid", netId);
+            jsonBody.put("password", password);
+            final String requestBody = jsonBody.toString();
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, userLoginURL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    System.out.println(response);
+                    if (verifyUser(response)) {
+                        User.userNetid = netId;
+                        openHomePageActivity();
                     }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println(error);
+                }
+            }) {
 
-                    @Override
-                    public byte[] getBody() throws AuthFailureError {
-                        try {
-                            return requestBody == null ? null : requestBody.getBytes("utf-8");
-                        } catch (UnsupportedEncodingException uee) {
-                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                            return null;
-                        }
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                        return null;
                     }
-                };
-                requestQueue.add(postRequest);
+                }
+            };
+            requestQueue.add(postRequest);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
+
+    private void verifyCredentialsRunner(final String netId, String password) {
+        try {
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("netid", netId);
+            jsonBody.put("password", password);
+            final String requestBody = jsonBody.toString();
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, runnerLoginURL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    System.out.println(response);
+                    if (verifyUser(response)) {
+                        Runner.Netid = netId;
+                        openRunnerActivity();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println(error);
+                }
+            }) {
+
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                        return null;
+                    }
+                }
+            };
+            requestQueue.add(postRequest);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public void openHomePageActivity() {
         Intent intent = new Intent(this, UserHomeActivity.class);
@@ -118,9 +174,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openRunnerActivity() {
+        Intent intent = new Intent(this, RunnersPage.class);
+        startActivity(intent);
+    }
+
 
     public boolean verifyUser(String Response) {
-        if(Response.equals("success")){
+        if (Response.equals("success")) {
             return true;
         }
         return false;

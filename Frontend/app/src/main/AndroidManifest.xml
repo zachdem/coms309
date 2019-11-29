@@ -15,12 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WestSideMarket" />
-
+        <activity android:name=".OrdersPreview"></activity>
+        <activity android:name=".RunnerPendingOrders" />
+        <activity android:name=".NewLocation" />
+        <activity android:name=".RunnersPage" />
+        <activity android:name=".ChatActivity" />
         <activity android:name=".UserSignUpActivity" />
-        <activity android:name=".ClydesMenuActivity" />
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".LocationsMenuActivity" />
+        <activity android:name=".CartActivity" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
