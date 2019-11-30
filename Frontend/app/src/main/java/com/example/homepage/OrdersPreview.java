@@ -56,8 +56,6 @@ public class OrdersPreview extends AppCompatActivity {
         final Button Pickup = findViewById(R.id.Pickup);
 
 
-
-
         Pickup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,60 +64,25 @@ public class OrdersPreview extends AppCompatActivity {
         });
 
 
-
-
-
-
     }
 
 
-
     private void PickupOrder() {
+        JSONObject jsonObject = new JSONObject();
         try {
-            //JSONArray jsonArray = new JSONArray();
-
-            JSONObject jsonObject = new JSONObject();
             jsonObject.put("netid", Runner.Netid);
             jsonObject.put("order_id", getIntent().getStringExtra("OrderID"));
-
-
-
-            final String requestBody = jsonObject.toString();
-
-            System.out.println(requestBody);
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, JsonUrlPost, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    System.out.println(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    System.out.println("error");
-                    System.out.println(error);
-                }
-            }) {
-                @Override
-                public String getBodyContentType() {
-                    return "application/json; charset=utf-8";
-                }
-
-                @Override
-                public byte[] getBody() throws AuthFailureError {
-                    try {
-                        return requestBody == null ? null : requestBody.getBytes("utf-8");
-
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                        return null;
-                    }
-                }
-            };
-            requestQueue.add(stringRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        VolleyCallback callback = new VolleyCallback() {
+            @Override
+            public void onVolleyResponse(String result) {
+                System.out.println(result);
+            }
+        };
+
+        HttpRequests.httpPost(jsonObject.toString(), JsonUrlPost, this, callback);
     }
 }

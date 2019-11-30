@@ -15,12 +15,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.example.homepage.app.AppController;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -29,7 +23,8 @@ import java.util.ArrayList;
 public class NewLocation extends AppCompatActivity {
 
     ImageButton cartButton;
-    private Double total = 0.0;
+    private String locationItemsURL = " ";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +33,7 @@ public class NewLocation extends AppCompatActivity {
 
         TextView Pagetitle = findViewById(R.id.textView2);
 
-        urlJsonObj = "http://" + GlobalAppInfo.serverName + ":8080/" + getIntent().getStringExtra("URL");
+        locationItemsURL = "http://" + GlobalAppInfo.serverName + ":8080/" + getIntent().getStringExtra("URL");
 
         cartButton = findViewById(R.id.cartButton);
 
@@ -106,8 +101,6 @@ public class NewLocation extends AppCompatActivity {
 
     }
 
-    String urlJsonObj = " ";
-
     /**
      * Making the JSON Array request
      */
@@ -137,7 +130,7 @@ public class NewLocation extends AppCompatActivity {
             }
         };
 
-        HttpRequests.httpGet(urlJsonObj, this, callback);
+        HttpRequests.httpGet(locationItemsURL, this, callback);
 
     }
 
