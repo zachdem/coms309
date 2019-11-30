@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class UserHomeActivity extends AppCompatActivity {
 
-    private Button orderButton, chatButton;
+    private Button orderButton, chatButton, refreshButton;
 
     private WebSocket ws = null;
 
@@ -45,6 +45,7 @@ public class UserHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_home);
         orderButton = findViewById(R.id.order_button);
         chatButton = findViewById(R.id.chat_button);
+        refreshButton = findViewById(R.id.refresh_orders_button);
 
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +63,16 @@ public class UserHomeActivity extends AppCompatActivity {
 
                 openChatActivity();
 
+                updateOrderList();
+            }
+        });
+
+
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateOrderList();
+
             }
         });
 
@@ -70,65 +81,9 @@ public class UserHomeActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        updateOrderList();
 
-        orderList = new ArrayList<>();
-
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
-
-        lv = findViewById(R.id.order_list_view);
-
-        lv.setAdapter(arrayAdapter);
-        
-        WebSocketFactory factory = new WebSocketFactory().setConnectionTimeout(5000);
-
-        // Create a WebSocket. The timeout value set above is used.
-        try {
-            ws = factory.createSocket("ws://" + GlobalAppInfo.serverName + ":8080/userhome");
-
-            ws.addListener(new WebSocketAdapter() {
-
-                @Override
-                public void onTextMessage(WebSocket websocket, String message) throws Exception {
-                    ArrayList<String> tempList = new ArrayList<>();
-                    Gson g = new Gson();
-                    JSONArray arr = new JSONArray(message);
-                    System.out.println("JSON Array: " + arr);
-                    System.out.println(message);
-                    System.out.println(arr.length());
-                    for (int i = 0; i < arr.length(); i++) {
-                        System.out.println(i);
-                        JSONObject obj = arr.optJSONObject(i);
-                        System.out.println(obj);
-                        String orderID = obj.optString("order_id");
-                        String pendingOrder = obj.optString("pending_order");
-                        String order = "     Order Number: " + orderID + ", Pending Order: " + pendingOrder;
-                        if (orderID != null) {
-                            tempList.add(order);
-                        }
-                    }
-
-                    orderList.clear();
-                    orderList.addAll(tempList);
-                    arrayAdapter.notifyDataSetChanged();
-                }
-            });
-
-            ws.connectAsynchronously();
-            Thread.sleep(500);
-            ws.sendText(User.userNetid);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        ws.disconnect();
-    }
-
 
     public void openLocationsActivity() {
         Intent intent = new Intent(this, LocationsMenuActivity.class);
@@ -140,6 +95,50 @@ public class UserHomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void updateOrderList()
+    {
+        orderList = new ArrayList<>();
+
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
+
+        lv = findViewById(R.id.order_list_view);
+
+        lv.setAdapter(arrayAdapter);
+
+        VolleyCallback callback = new VolleyCallback() {
+            @Override
+            public void onVolleyResponse(String result) {
+                ArrayList<String> tempList = new ArrayList<>();
+                JSONArray arr = null;
+                try {
+                    arr = new JSONArray(result);
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+                System.out.println("JSON Array: " + arr);
+                System.out.println(result);
+                System.out.println(arr.length());
+                for (int i = 0; i < arr.length(); i++) {
+                    System.out.println(i);
+                    JSONObject obj = arr.optJSONObject(i);
+                    System.out.println(obj);
+                    String orderID = obj.optString("order_id");
+                    String pendingOrder = obj.optString("pending_order");
+                    String order = "     Order Number: " + orderID + ", Pending Order: " + pendingOrder;
+                    if (orderID != null) {
+                        tempList.add(order);
+                    }
+                }
+
+                orderList.clear();
+                orderList.addAll(tempList);
+                arrayAdapter.notifyDataSetChanged();
+            }
+        };
+
+        HttpRequests.httpGet("http://" + GlobalAppInfo.serverName + ":8080/orders/" + User.userNetid, this, callback);
+    }
 
 
 }
