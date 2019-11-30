@@ -24,7 +24,7 @@ public class HttpRequests {
 
     private static String postResponse;
 
-    public static void sendOrder(final String text, String url, Context context){
+    public static void httpPost(final String text, String url, Context context, final VolleyCallback callback){
 
         try {
 
@@ -33,8 +33,7 @@ public class HttpRequests {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    System.out.println(response);
-                    postResponse = response;
+                    callback.onVolleyResponse(response);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -66,44 +65,6 @@ public class HttpRequests {
 
     }
 
-   /* public static void sendUserCredentials(final String text, String url, Context context){
 
-        try {
-
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                   //Update
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                }
-            }) {
-                @Override
-                public String getBodyContentType() {
-                    return "application/json; charset=utf-8";
-                }
-
-                @Override
-                public byte[] getBody() throws AuthFailureError {
-                    try {
-                        return text == null ? null : text.getBytes("utf-8");
-
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", text, "utf-8");
-                        return null;
-                    }
-                }
-            };
-            requestQueue.add(stringRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }*/
 
 }
