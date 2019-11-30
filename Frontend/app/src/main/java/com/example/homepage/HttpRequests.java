@@ -22,8 +22,6 @@ import java.io.UnsupportedEncodingException;
 
 public class HttpRequests {
 
-    private static String postResponse;
-
     public static void httpPost(final String text, String url, Context context, final VolleyCallback callback){
 
         try {
@@ -58,6 +56,30 @@ public class HttpRequests {
                     }
                 }
             };
+            requestQueue.add(stringRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void httpGet(String url, Context context, final VolleyCallback callback){
+
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    callback.onVolleyResponse(response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println("error");
+                    System.out.println(error);
+                }
+            });
             requestQueue.add(stringRequest);
         } catch (Exception e) {
             e.printStackTrace();

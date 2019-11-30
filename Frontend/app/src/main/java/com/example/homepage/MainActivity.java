@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
                 verifyUserCredentials(netidEditText.getText().toString(), passwordEditText.getText().toString());
-
                 verifyRunnerCredentials(netidEditText.getText().toString(), passwordEditText.getText().toString());
             }
 
