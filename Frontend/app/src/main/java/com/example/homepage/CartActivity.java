@@ -81,55 +81,16 @@ public class CartActivity extends AppCompatActivity {
                 jsonObject.put("location_name", Cart.cartList.get(i).locationName);
                 jsonObject.put("netid", User.userNetid);
                 jsonArray.put(jsonObject);
-
-
             }
 
             System.out.println(jsonArray.toString());
 
-            final String requestBody = jsonArray.toString();
+            HttpRequests.sendOrder(jsonArray.toString(),urlJsonObj,this);
 
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, urlJsonObj, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    jsonResponse(response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    System.out.println("error");
-                    System.out.println(error);
-                }
-            }) {
-                @Override
-                public String getBodyContentType() {
-                    return "application/json; charset=utf-8";
-                }
-
-                @Override
-                public byte[] getBody() throws AuthFailureError {
-                    try {
-                        return requestBody == null ? null : requestBody.getBytes("utf-8");
-
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                        return null;
-                    }
-                }
-            };
-            requestQueue.add(stringRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public boolean jsonResponse(String response){
-        if(response == "recieved"){
-            return true;
-        }
-        return false;
     }
 
 }
