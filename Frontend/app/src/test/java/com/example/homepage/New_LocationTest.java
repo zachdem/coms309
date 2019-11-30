@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 
 public class New_LocationTest {
 
-    @Test
+   /* @Test
     public void checkURL() {
         NewLocation new_location = mock(NewLocation.class);
 
@@ -16,5 +16,5 @@ public class New_LocationTest {
 
         when(new_location.checkURL(url)).thenReturn(true);
         Assert.assertEquals(new_location.checkURL(url), true);
-    }
+    }*/
 }

@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 
 
 public class UserSignUpActivityTest {
-
+/*
     @Test
     public void verifySignupInput() {
 
@@ -27,5 +27,5 @@ public class UserSignUpActivityTest {
 
         Assert.assertEquals(userSignUpActivity.verifySignupInput(isuID,rN,acctN,firstN,lastN,userN,passW,net), true);
 
-    }
+    }*/
 }
