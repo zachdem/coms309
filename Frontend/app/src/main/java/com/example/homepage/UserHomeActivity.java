@@ -6,32 +6,17 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.example.homepage.app.AppController;
-import com.google.gson.Gson;
-import com.neovisionaries.ws.client.WebSocket;
-import com.neovisionaries.ws.client.WebSocketAdapter;
-import com.neovisionaries.ws.client.WebSocketFactory;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class UserHomeActivity extends AppCompatActivity {
 
-    private Button orderButton, chatButton, refreshButton;
-
-    private WebSocket ws = null;
+    private Button orderButton, refreshButton;
+    //private Button chatButton;
 
     private ArrayAdapter arrayAdapter;
 
@@ -44,7 +29,7 @@ public class UserHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
         orderButton = findViewById(R.id.order_button);
-        chatButton = findViewById(R.id.chat_button);
+        //chatButton = findViewById(R.id.chat_button);
         refreshButton = findViewById(R.id.refresh_orders_button);
 
         orderButton.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +42,7 @@ public class UserHomeActivity extends AppCompatActivity {
         });
 
 
-        chatButton.setOnClickListener(new View.OnClickListener() {
+        /*chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -65,7 +50,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
                 updateOrderList();
             }
-        });
+        });*/
 
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +64,7 @@ public class UserHomeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         updateOrderList();
 
@@ -90,13 +75,12 @@ public class UserHomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openChatActivity() {
+  /*  public void openChatActivity() {
         Intent intent = new Intent(this, ChatActivity.class);
         startActivity(intent);
-    }
+    }*/
 
-    private void updateOrderList()
-    {
+    private void updateOrderList() {
         orderList = new ArrayList<>();
 
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
@@ -112,8 +96,7 @@ public class UserHomeActivity extends AppCompatActivity {
                 JSONArray arr = null;
                 try {
                     arr = new JSONArray(result);
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.out.println("JSON Array: " + arr);

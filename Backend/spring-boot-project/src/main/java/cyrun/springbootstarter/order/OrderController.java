@@ -1,7 +1,6 @@
 package cyrun.springbootstarter.order;
 
-import java.util.List;
-
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +15,10 @@ public class OrderController {
 		private OrderService orderService;
 		
 		@RequestMapping(method = RequestMethod.GET, value = "/orders/{netid}")
-		public List<Order> getMenu(@PathVariable String netid) {
-			return orderService.getUserOrders(netid);
-
+		public String getMenu(@PathVariable String netid) {
+			JSONArray orderList = new JSONArray(orderService.getUserOrders(netid));
+			System.out.println(orderList.toString());
+			return orderList.toString();
 		}
 		
 		@RequestMapping(method = RequestMethod.POST, value = "/orders/place_order")
