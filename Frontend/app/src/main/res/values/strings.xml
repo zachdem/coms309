@@ -57,5 +57,8 @@
     <string name="West_Side">West Side Market</string>
     <string name="Pending_Orders">View Pending Orders?</string>
     <string name="Orders">Orders</string>
+    <string name="Refresh">Refresh</string>
+
+
 
 </resources>

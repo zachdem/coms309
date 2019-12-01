@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 
 public class MainActivityTest {
 
-    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+   /* @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Test
     public void verifyUser() {
@@ -27,5 +27,5 @@ public class MainActivityTest {
         when(mainActivity.verifyUser(response)).thenReturn(true);
 
         Assert.assertEquals(mainActivity.verifyUser(response), true);
-    }
+    }*/
 }

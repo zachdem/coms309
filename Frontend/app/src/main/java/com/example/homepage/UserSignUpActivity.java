@@ -26,8 +26,6 @@ import java.io.UnsupportedEncodingException;
 public class UserSignUpActivity extends AppCompatActivity {
 
 
-
-
     private String urlJsonObj = "http://" + GlobalAppInfo.serverName + ":8080/user_signup";
     private String getUrlJsonObj = "http://" + GlobalAppInfo.serverName + ":8080/runner_signup";
 
@@ -80,8 +78,8 @@ public class UserSignUpActivity extends AppCompatActivity {
                     sendRunnerSignUpRequest(firstNameEtext.getText().toString(), lastNameEtext.getText().toString(), userNameEtext.getText().toString(), passwordEtext.getText().toString(), isuID, routingNumber, accountNumber, netIDEtext.getText().toString());
                 }
             }
-    });
-}
+        });
+    }
 
     private void sendSignUpRequest(String firstName, String lastName, String username, String password, Integer isuID, Integer routingNumber, Integer accountNumber, String netID) {
         try {
@@ -135,8 +133,8 @@ public class UserSignUpActivity extends AppCompatActivity {
     }
 
     private void sendRunnerSignUpRequest(String firstName, String lastName, String username, String password, Integer isuID, Integer routingNumber, Integer accountNumber, String netID) {
+        JSONObject jsonBody = new JSONObject();
         try {
-            JSONObject jsonBody = new JSONObject();
             jsonBody.put("first_name", firstName);
             jsonBody.put("last_name", lastName);
             jsonBody.put("username", username);
@@ -146,46 +144,24 @@ public class UserSignUpActivity extends AppCompatActivity {
             jsonBody.put("account_number", accountNumber);
             jsonBody.put("netid", netID);
             final String requestBody = jsonBody.toString();
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            StringRequest postRequest = new StringRequest(Request.Method.POST, getUrlJsonObj, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    System.out.println(response);
-                    if (response.equals("signup_success")) {
-                        openMainActivity();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    System.out.println(error);
-                }
-            }) {
-
-                @Override
-                public String getBodyContentType() {
-                    return "application/json; charset=utf-8";
-                }
-
-                @Override
-                public byte[] getBody() throws AuthFailureError {
-                    try {
-                        return requestBody == null ? null : requestBody.getBytes("utf-8");
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                        return null;
-                    }
-                }
-            };
-            requestQueue.add(postRequest);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        VolleyCallback callback = new VolleyCallback() {
+            @Override
+            public void onVolleyResponse(String result) {
+                System.out.println(result);
+                if (result.equals("signup_success")) {
+                    openMainActivity();
+                }
+            }
+        };
+
+        HttpRequests.httpPost(jsonBody.toString(), getUrlJsonObj, this, callback);
     }
 
-    public boolean verifySignupInput(String isuID, String routingNumber, String accountNumber, String firstName, String lastName, String userName, String password, String netID){
+    public boolean verifySignupInput(String isuID, String routingNumber, String accountNumber, String firstName, String lastName, String userName, String password, String netID) {
         // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
 
         if (!isuID.equals("") && !routingNumber.equals("") && !accountNumber.equals("") && !firstName.equals("") && !lastName.equals("") &&
@@ -195,6 +171,7 @@ public class UserSignUpActivity extends AppCompatActivity {
 
         return false;
     }
+
     public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

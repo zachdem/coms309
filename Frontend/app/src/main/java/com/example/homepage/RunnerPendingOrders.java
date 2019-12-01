@@ -69,7 +69,7 @@ public class RunnerPendingOrders extends AppCompatActivity {
         final ListView Listv = findViewById(R.id.Pending);
         Listv.setAdapter(arrayAdapter);
 
-        makeJsonArrayRequest(tubeLines, arrayAdapter);
+        retrievePendingOrders(tubeLines, arrayAdapter);
 
         Listv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,8 +81,6 @@ public class RunnerPendingOrders extends AppCompatActivity {
                 String OrderNum = scan.next();
 
                 scan.close();
-
-
 
                 Intent intent = new Intent(RunnerPendingOrders.this, OrdersPreview.class);
                 intent.putExtra("OrderID", OrderNum);
@@ -96,13 +94,17 @@ public class RunnerPendingOrders extends AppCompatActivity {
     }
 
 
-    private void makeJsonArrayRequest(final ArrayList<String> tl, final ArrayAdapter<String> arrAdapt){
+    private void retrievePendingOrders(final ArrayList<String> tl, final ArrayAdapter<String> arrAdapt){
 
-
-        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, JsonUrl, null, new Response.Listener<JSONArray>() {
+        VolleyCallback callback = new VolleyCallback() {
             @Override
-            public void onResponse(JSONArray response) {
-                System.out.println(response);
+            public void onVolleyResponse(String result) {
+                JSONArray response = null;
+                try {
+                    response = new JSONArray(result);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 map = new HashMap<>();
                 for (int i = 0; i < response.length(); i++){
                     JSONObject object = response.optJSONObject(i);
@@ -122,14 +124,9 @@ public class RunnerPendingOrders extends AppCompatActivity {
                 }
 
                 arrAdapt.notifyDataSetChanged();
+            }
+        };
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error.toString());
-            }
-        });
-        AppController.getInstance().addToRequestQueue(jsonArrayRequest);
+        HttpRequests.httpGet(JsonUrl, this, callback);
     }
 }
