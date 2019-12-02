@@ -3,6 +3,7 @@ package com.example.homepage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -24,6 +25,8 @@ public class UserHomeActivity extends AppCompatActivity {
 
     private ListView lv;
 
+    private JSONArray orderHistoryArr = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,11 @@ public class UserHomeActivity extends AppCompatActivity {
         orderButton = findViewById(R.id.order_button);
         //chatButton = findViewById(R.id.chat_button);
         refreshButton = findViewById(R.id.refresh_orders_button);
+        lv = findViewById(R.id.order_list_view);
+        orderList = new ArrayList<>();
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
+        lv.setAdapter(arrayAdapter);
+
 
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +69,26 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         });
 
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                JSONObject record = null;
+                try{
+                    record = orderHistoryArr.optJSONObject(position);
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+
+                Integer orderID = record.optInt("order_id");
+
+                //Pass orderID with via intent to activity that displays order information
+                openOrderDetails(orderID);
+
+            }
+        });
+
     }
 
     @Override
@@ -81,30 +109,21 @@ public class UserHomeActivity extends AppCompatActivity {
     }*/
 
     private void updateOrderList() {
-        orderList = new ArrayList<>();
-
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
-
-        lv = findViewById(R.id.order_list_view);
-
-        lv.setAdapter(arrayAdapter);
-
         VolleyCallback callback = new VolleyCallback() {
             @Override
             public void onVolleyResponse(String result) {
                 ArrayList<String> tempList = new ArrayList<>();
-                JSONArray arr = null;
                 try {
-                    arr = new JSONArray(result);
+                    orderHistoryArr = new JSONArray(result);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                System.out.println("JSON Array: " + arr);
+                System.out.println("JSON Array: " + orderHistoryArr);
                 System.out.println(result);
-                System.out.println(arr.length());
-                for (int i = 0; i < arr.length(); i++) {
+                System.out.println(orderHistoryArr.length());
+                for (int i = 0; i < orderHistoryArr.length(); i++) {
                     System.out.println(i);
-                    JSONObject obj = arr.optJSONObject(i);
+                    JSONObject obj = orderHistoryArr.optJSONObject(i);
                     System.out.println(obj);
                     String orderID = obj.optString("order_id");
                     String pendingOrder = obj.optString("pending_order");
@@ -122,6 +141,11 @@ public class UserHomeActivity extends AppCompatActivity {
 
         HttpRequests.httpGet("http://" + GlobalAppInfo.serverName + ":8080/orders/" + User.userNetid, this, callback);
     }
+
+    private void openOrderDetails(Integer orderID){
+
+    }
+
 
 
 }

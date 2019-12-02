@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -74,6 +75,10 @@ public class CartActivity extends AppCompatActivity {
             VolleyCallback callback = new VolleyCallback() {
                 @Override
                 public void onVolleyResponse(String result) {
+                    if(result.equals("received")){
+                        Cart.cartList.clear();
+                        openUserHome();
+                    }
                     System.out.println(result);
                 }
             };
@@ -83,6 +88,11 @@ public class CartActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void openUserHome(){
+        Intent intent = new Intent(this, UserHomeActivity.class);
+        startActivity(intent);
     }
 
 }
