@@ -12,7 +12,7 @@ public class RunnersPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_runners__page);
+        setContentView(R.layout.activity_runners_page);
 
 
 

@@ -1,12 +1,19 @@
 package com.example.homepage;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,7 +26,7 @@ public class UserHomeActivity extends AppCompatActivity {
     private Button orderButton, refreshButton;
     //private Button chatButton;
 
-    private ArrayAdapter arrayAdapter;
+    private ArrayAdapter<String>  arrayAdapter;
 
     private ArrayList<String> orderList;
 
@@ -36,7 +43,24 @@ public class UserHomeActivity extends AppCompatActivity {
         refreshButton = findViewById(R.id.refresh_orders_button);
         lv = findViewById(R.id.order_list_view);
         orderList = new ArrayList<>();
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList);
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                // Get the Item from ListView
+                View view = super.getView(position, convertView, parent);
+
+                // Initialize a TextView for ListView each Item
+                TextView tv = view.findViewById(android.R.id.text1);
+
+                tv.setTextColor(Color.BLACK);
+
+                tv.setTypeface(null, Typeface.BOLD);
+
+                // Generate ListView Item using TextView
+                return view;
+            }
+        };
         lv.setAdapter(arrayAdapter);
 
 
@@ -118,16 +142,11 @@ public class UserHomeActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                System.out.println("JSON Array: " + orderHistoryArr);
-                System.out.println(result);
-                System.out.println(orderHistoryArr.length());
                 for (int i = 0; i < orderHistoryArr.length(); i++) {
-                    System.out.println(i);
                     JSONObject obj = orderHistoryArr.optJSONObject(i);
-                    System.out.println(obj);
                     String orderID = obj.optString("order_id");
                     String pendingOrder = obj.optString("pending_order");
-                    String order = "     Order Number: " + orderID + ", Pending Order: " + pendingOrder;
+                    String order = "                Order ID: " + orderID + ", Pending Order: " + pendingOrder;
                     if (orderID != null) {
                         tempList.add(order);
                     }
@@ -143,7 +162,9 @@ public class UserHomeActivity extends AppCompatActivity {
     }
 
     private void openOrderDetails(Integer orderID){
-
+        Intent intent = new Intent(this, UserOrderDetailsActivity.class);
+        intent.putExtra("orderID", orderID);
+        startActivity(intent);
     }
 
 

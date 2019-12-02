@@ -40,10 +40,10 @@ public class OrderController {
 		}
 		
 		@RequestMapping(method = RequestMethod.POST, value = "/orders/updateRunner")
-		public void updateRunners(@RequestBody String order)
+		public String updateRunners(@RequestBody String order)
 		{
-			System.out.println(order);
 			orderService.updateRunner(order);
+			return "received";
 		}
 		
 }

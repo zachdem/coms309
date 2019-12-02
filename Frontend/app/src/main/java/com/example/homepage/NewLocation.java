@@ -29,7 +29,7 @@ public class NewLocation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new__location);
+        setContentView(R.layout.activity_new_location);
 
         TextView Pagetitle = findViewById(R.id.textView2);
 
