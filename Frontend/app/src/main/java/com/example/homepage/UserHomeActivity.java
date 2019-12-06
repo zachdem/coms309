@@ -29,6 +29,8 @@ public class UserHomeActivity extends AppCompatActivity {
     private Button orderButton, refreshButton;
     //private Button chatButton;
 
+    private TextView orderNotification;
+
     private ArrayAdapter<String>  arrayAdapter;
 
     private ArrayList<String> orderList;
@@ -44,6 +46,7 @@ public class UserHomeActivity extends AppCompatActivity {
         orderButton = findViewById(R.id.order_button);
         //chatButton = findViewById(R.id.chat_button);
         refreshButton = findViewById(R.id.refresh_orders_button);
+        orderNotification = findViewById(R.id.order_notificiation_tv);
         lv = findViewById(R.id.order_list_view);
         orderList = new ArrayList<>();
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList) {
@@ -126,7 +129,7 @@ public class UserHomeActivity extends AppCompatActivity {
         VolleyCallback callback = new VolleyCallback() {
             @Override
             public void onVolleyResponse(String result) {
-                System.out.println(result);
+                orderNotification.setText(result);
             }
         };
 

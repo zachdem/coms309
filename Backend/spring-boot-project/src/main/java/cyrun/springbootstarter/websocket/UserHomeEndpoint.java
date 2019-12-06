@@ -38,7 +38,6 @@ public class UserHomeEndpoint {
 	public void onMessage(Session session, String message) throws IOException {
 		System.out.println("Adding netid");
 		// First message sent will be netid
-		session.getBasicRemote().sendText("Adding Entry");
 		connectedUsers.put(session.getId(), new UserSession(session, message));
 	}
 
