@@ -2,25 +2,13 @@ package com.example.homepage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.UnsupportedEncodingException;
 
 public class OrdersPreview extends AppCompatActivity {
 
@@ -32,7 +20,7 @@ public class OrdersPreview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_orders__preview);
+        setContentView(R.layout.activity_orders_preview);
 
 
         TextView Nametitle = findViewById(R.id.textView3);
@@ -79,10 +67,17 @@ public class OrdersPreview extends AppCompatActivity {
         VolleyCallback callback = new VolleyCallback() {
             @Override
             public void onVolleyResponse(String result) {
-                System.out.println(result);
+                if(result.equals("received")){
+                    sendToRunnerHome();
+                }
             }
         };
 
         HttpRequests.httpPost(jsonObject.toString(), JsonUrlPost, this, callback);
+    }
+
+    private void sendToRunnerHome(){
+        Intent intent = new Intent(this, RunnersPage.class);
+        startActivity(intent);
     }
 }

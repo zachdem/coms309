@@ -24,6 +24,7 @@
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".LocationsMenuActivity" />
         <activity android:name=".CartActivity" />
+        <activity android:name=".UserOrderDetailsActivity" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

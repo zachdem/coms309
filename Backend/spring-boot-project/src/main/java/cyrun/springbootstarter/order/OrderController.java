@@ -21,6 +21,12 @@ public class OrderController {
 			return orderList.toString();
 		}
 		
+		
+		@RequestMapping(method = RequestMethod.GET, value = "/orders/singleorder/{orderid}")
+		public String getSingleOrderInfo(@PathVariable Integer orderid) {
+			return orderService.getSingleOrderInformation(orderid);
+		}
+		
 		@RequestMapping(method = RequestMethod.POST, value = "/orders/place_order")
 		public String placeOrder(@RequestBody String order) {
 			System.out.println(order);
@@ -34,12 +40,10 @@ public class OrderController {
 		}
 		
 		@RequestMapping(method = RequestMethod.POST, value = "/orders/updateRunner")
-		public void updateRunners(@RequestBody String order)
+		public String updateRunners(@RequestBody String order)
 		{
-			System.out.println(order);
 			orderService.updateRunner(order);
-
+			return "received";
 		}
-
-
+		
 }

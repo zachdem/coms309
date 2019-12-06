@@ -71,5 +71,20 @@ public class OrderService {
 		JSONObject confirmation = new JSONObject(order);
 		orderRepository.updateRunner(confirmation.getString("netid"), Integer.parseInt(confirmation.getString("order_id")));
 	}
+	
+	public String getSingleOrderInformation(Integer orderID){
+		OrderInformation orderInfo = orderInfoRepo.getSingleOrderInformation(orderID);
+		JSONObject obj = new JSONObject();
+	    obj.put("order_id", orderInfo.getOrder_id());
+        obj.put("first_name", orderInfo.getFirst_name());
+        obj.put("last_name", orderInfo.getLast_name());
+        obj.put("item_name", orderInfo.getItem_name());
+        obj.put("item_price", orderInfo.getItem_price());
+        obj.put("location_name", orderInfo.getLocation_name());
+        obj.put("runner_first_name", orderInfo.getRunner_first_name());
+        obj.put("runner_last_name", orderInfo.getRunner_last_name());
+        obj.put("pending_order", orderInfo.getPending_order());
+		return obj.toString();
+	}
 
 }
