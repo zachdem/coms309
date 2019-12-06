@@ -1,11 +1,15 @@
 package cyrun.springbootstarter.order;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import cyrun.springbootstarter.websocket.UserHomeEndpoint;
 
 @Service
 public class OrderService {
@@ -15,6 +19,9 @@ public class OrderService {
 	
 	@Autowired
 	private OrderInformationRepository orderInfoRepo;
+	
+	@Autowired
+	UserHomeEndpoint userHomeEndpoint;
 	
 	
 	public List<Order> getUserOrders(String netid)
@@ -60,16 +67,19 @@ public class OrderService {
 	         obj.put("item_name", i.getItem_name());
 	         obj.put("item_price", i.getItem_price());
 	         obj.put("location_name", i.getLocation_name());
+	         obj.put("user_netid", i.getUser_netid());
 	         arr.put(obj);
 	    }
 	    return arr.toString();
 	}
 	
 	
-	public void updateRunner(String order)
+	public void updateRunner(String order) throws JSONException, IOException
 	{
 		JSONObject confirmation = new JSONObject(order);
 		orderRepository.updateRunner(confirmation.getString("netid"), Integer.parseInt(confirmation.getString("order_id")));
+		userHomeEndpoint.sendMessage("Order " + confirmation.getString("order_id") + " is confirmed for pickup!", confirmation.getString("user_netid"));
+		
 	}
 	
 	public String getSingleOrderInformation(Integer orderID){

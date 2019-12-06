@@ -60,6 +60,7 @@ public class OrdersPreview extends AppCompatActivity {
         try {
             jsonObject.put("netid", Runner.Netid);
             jsonObject.put("order_id", getIntent().getStringExtra("OrderID"));
+            jsonObject.put("user_netid", getIntent().getStringExtra("user_netid"));
         } catch (Exception e) {
             e.printStackTrace();
         }
