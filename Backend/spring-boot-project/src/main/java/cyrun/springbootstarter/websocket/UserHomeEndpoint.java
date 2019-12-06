@@ -31,7 +31,6 @@ public class UserHomeEndpoint {
 
 	@OnOpen
 	public void onOpen(Session session) throws IOException {
-		session.getBasicRemote().sendText("Connected");
 	}
 
 	@OnMessage
