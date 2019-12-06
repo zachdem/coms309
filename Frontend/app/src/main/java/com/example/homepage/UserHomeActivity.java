@@ -15,6 +15,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.neovisionaries.ws.client.WebSocket;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -118,9 +121,28 @@ public class UserHomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        //Open websocket
+
+        VolleyCallback callback = new VolleyCallback() {
+            @Override
+            public void onVolleyResponse(String result) {
+                System.out.println(result);
+            }
+        };
+
+        WebSocketUtil.connectWebSocket(callback);
+        WebSocketUtil.sendText(User.userNetid);
         updateOrderList();
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        WebSocketUtil.disconnectWebSocket();
+        //Disconnect websocket
+    }
+
 
     public void openLocationsActivity() {
         Intent intent = new Intent(this, LocationsMenuActivity.class);

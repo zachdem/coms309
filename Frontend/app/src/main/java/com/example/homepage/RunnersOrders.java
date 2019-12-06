@@ -3,8 +3,6 @@ package com.example.homepage;
 public class RunnersOrders {
 
 
-
-
     public String firstname;
 
     public String lastname;
