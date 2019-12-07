@@ -1,4 +1,4 @@
-package com.example.homepage;
+package com.util;
 
 public class GlobalAppInfo {
 

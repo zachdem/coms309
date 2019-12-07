@@ -1,4 +1,4 @@
-package com.example.homepage;
+package com.user;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +15,11 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.util.GlobalAppInfo;
+import com.util.HttpRequests;
+import com.example.homepage.R;
+import com.util.VolleyCallback;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,7 +27,7 @@ import java.util.ArrayList;
 
 public class NewLocation extends AppCompatActivity {
 
-    ImageButton cartButton;
+    private ImageButton cartButton;
     private String locationItemsURL = " ";
 
 
@@ -104,7 +109,7 @@ public class NewLocation extends AppCompatActivity {
     /**
      * Making the JSON Array request
      */
-    public void displayMenuItems(final ArrayList<String> tl, final ArrayAdapter<String> arrAdapt) {
+    private void displayMenuItems(final ArrayList<String> tl, final ArrayAdapter<String> arrAdapt) {
 
         VolleyCallback callback = new VolleyCallback() {
             @Override
@@ -134,7 +139,7 @@ public class NewLocation extends AppCompatActivity {
 
     }
 
-    public void openCartActivity() {
+    private void openCartActivity() {
         Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
     }

@@ -1,10 +1,9 @@
-package com.example.homepage;
+package com.user;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,6 +17,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.util.GlobalAppInfo;
+import com.util.HttpRequests;
+import com.example.homepage.R;
+import com.util.VolleyCallback;
 
 import org.json.JSONObject;
 
@@ -161,7 +164,7 @@ public class UserSignUpActivity extends AppCompatActivity {
         HttpRequests.httpPost(jsonBody.toString(), getUrlJsonObj, this, callback);
     }
 
-    public boolean verifySignupInput(String isuID, String routingNumber, String accountNumber, String firstName, String lastName, String userName, String password, String netID) {
+    private boolean verifySignupInput(String isuID, String routingNumber, String accountNumber, String firstName, String lastName, String userName, String password, String netID) {
         // If we have clicked the button we need to pull the text from the EditText fields, netid, and password
 
         if (!isuID.equals("") && !routingNumber.equals("") && !accountNumber.equals("") && !firstName.equals("") && !lastName.equals("") &&
@@ -172,7 +175,7 @@ public class UserSignUpActivity extends AppCompatActivity {
         return false;
     }
 
-    public void openMainActivity() {
+    private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

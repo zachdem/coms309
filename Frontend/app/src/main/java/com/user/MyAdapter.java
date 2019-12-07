@@ -1,4 +1,4 @@
-package com.example.homepage;
+package com.user;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;

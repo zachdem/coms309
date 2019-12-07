@@ -1,14 +1,16 @@
-package com.example.homepage;
+package com.user;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.util.GlobalAppInfo;
+import com.util.HttpRequests;
+import com.example.homepage.R;
+import com.util.VolleyCallback;
 
-import java.util.ArrayList;
+import org.json.JSONObject;
 
 public class UserOrderDetailsActivity extends AppCompatActivity {
 

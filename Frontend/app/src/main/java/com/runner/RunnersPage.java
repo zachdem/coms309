@@ -1,4 +1,4 @@
-package com.example.homepage;
+package com.runner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.homepage.R;
 
 public class RunnersPage extends AppCompatActivity {
 
@@ -33,7 +35,7 @@ public class RunnersPage extends AppCompatActivity {
 
 
 
-    public void openPendingOrders() {
+    private void openPendingOrders() {
         Intent intent = new Intent(this, RunnerPendingOrders.class);
         startActivity(intent);
     }

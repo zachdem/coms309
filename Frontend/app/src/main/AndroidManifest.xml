@@ -15,18 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OrdersPreview"></activity>
-        <activity android:name=".RunnerPendingOrders" />
-        <activity android:name=".NewLocation" />
-        <activity android:name=".RunnersPage" />
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".UserSignUpActivity" />
-        <activity android:name=".UserHomeActivity" />
-        <activity android:name=".LocationsMenuActivity" />
-        <activity android:name=".CartActivity" />
-        <activity android:name=".UserOrderDetailsActivity" />
+        <activity android:name="com.runner.OrdersPreview"></activity>
+        <activity android:name="com.runner.RunnerPendingOrders" />
+        <activity android:name="com.user.NewLocation" />
+        <activity android:name="com.runner.RunnersPage" />
+        <activity android:name="com.user.ChatActivity" />
+        <activity android:name="com.user.UserSignUpActivity" />
+        <activity android:name="com.user.UserHomeActivity" />
+        <activity android:name="com.user.LocationsMenuActivity" />
+        <activity android:name="com.user.CartActivity" />
+        <activity android:name="com.user.UserOrderDetailsActivity" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.user.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

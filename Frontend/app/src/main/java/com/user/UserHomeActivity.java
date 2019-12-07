@@ -1,4 +1,4 @@
-package com.example.homepage;
+package com.user;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,6 +15,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.util.GlobalAppInfo;
+import com.util.HttpRequests;
+import com.example.homepage.R;
+import com.util.VolleyCallback;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -122,7 +128,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
     }
 
-    public void openLocationsActivity() {
+    private void openLocationsActivity() {
         Intent intent = new Intent(this, LocationsMenuActivity.class);
         startActivity(intent);
     }
