@@ -9,6 +9,23 @@
 
 
     <TextView
+        android:id="@+id/current_balance_tv"
+        android:layout_width="401dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="578dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@android:color/black"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/order_notificiation_tv"
         android:layout_width="401dp"
         android:layout_height="23dp"

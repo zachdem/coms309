@@ -72,6 +72,7 @@ public class CartActivity extends AppCompatActivity {
                 jsonObject.put("item_name", Cart.cartList.get(i).itemName);
                 jsonObject.put("location_name", Cart.cartList.get(i).locationName);
                 jsonObject.put("netid", User.userNetid);
+                jsonObject.put("item_price", Cart.cartList.get(i).itemPrice);
                 jsonArray.put(jsonObject);
             }
 

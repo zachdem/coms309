@@ -34,7 +34,7 @@ public class UserHomeActivity extends AppCompatActivity {
     private Button orderButton, refreshButton;
     //private Button chatButton;
 
-    private TextView orderNotification;
+    private TextView orderNotification, currentBalance;
 
     private ArrayAdapter<String>  arrayAdapter;
 
@@ -53,6 +53,7 @@ public class UserHomeActivity extends AppCompatActivity {
         refreshButton = findViewById(R.id.refresh_orders_button);
         orderNotification = findViewById(R.id.order_notificiation_tv);
         lv = findViewById(R.id.order_list_view);
+        currentBalance = findViewById(R.id.current_balance_tv);
         orderList = new ArrayList<>();
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, orderList) {
             @NonNull
@@ -100,6 +101,7 @@ public class UserHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateOrderList();
+                refreshCurrentBalance();
 
             }
         });
@@ -141,6 +143,7 @@ public class UserHomeActivity extends AppCompatActivity {
         WebSocketUtil.connectWebSocket(callback);
         WebSocketUtil.sendText(User.userNetid);
         updateOrderList();
+        refreshCurrentBalance();
 
     }
 
@@ -193,6 +196,19 @@ public class UserHomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, UserOrderDetailsActivity.class);
         intent.putExtra("orderID", orderID);
         startActivity(intent);
+    }
+
+
+    private void refreshCurrentBalance(){
+        VolleyCallback callback = new VolleyCallback() {
+            @Override
+            public void onVolleyResponse(String result) {
+                currentBalance.setText("Current Balance: $" + result);
+            }
+        };
+
+        HttpRequests.httpGet("http://" + GlobalAppInfo.serverName + ":8080/user/balance/" + User.userNetid, this, callback);
+
     }
 
 

@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cyrun.springbootstarter.user.UserService;
 import cyrun.springbootstarter.websocket.UserHomeEndpoint;
 
 @Service
@@ -23,6 +24,8 @@ public class OrderService {
 	@Autowired
 	UserHomeEndpoint userHomeEndpoint;
 	
+	@Autowired UserService userService;
+	
 	
 	public List<Order> getUserOrders(String netid)
 	{
@@ -36,8 +39,10 @@ public class OrderService {
 		String item_name = orderItem.getString("item_name");
 		String location_name = orderItem.getString("location_name");
 		String netid = orderItem.getString("netid");
+		Double total = orderItem.getDouble("item_price");
 		
 		orderRepository.sendOrderItem(item_name, location_name, netid);
+		userService.deductUserBalance(total, netid);
 		/*for(int i = 0; i < arr.length(); i++)
 		{
 			JSONObject orderItem = arr.getJSONObject(i);

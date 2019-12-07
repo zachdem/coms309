@@ -1,5 +1,6 @@
 package cyrun.springbootstarter.user;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,7 @@ public class UserService {
 
 	public String signUpUserService(User user) {
 		// Verify the user doesn't exist, if it does exist already return fail
-		if(verifyUserExists(user))
-		{
+		if (verifyUserExists(user)) {
 			return "user_already_exists";
 		}
 
@@ -39,18 +39,24 @@ public class UserService {
 
 		return "fail";
 	}
-	
-	public boolean verifyUserExists(User user)
-	{
+
+	public boolean verifyUserExists(User user) {
 		User found_user = userRepository.findByNetid(user.getNetid());
 		if (found_user != null) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
-		
+
+	}
+
+	public String getUserBalance(String netid) {
+		User user = userRepository.findByNetid(netid);
+		return String.valueOf(user.getBalance());
+	}
+	
+	public void deductUserBalance(Double amount, String netid) {
+		userRepository.deductBalance(amount, netid);
 	}
 
 }
