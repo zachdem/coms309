@@ -34,7 +34,7 @@ public class UserMockitoTest {
 	@Test
 	public void getUserByNetIDTest() {
 		
-		User user = new User(1,"testnetid","testpassword","first","last","testusername",1234,1234,1234);
+		User user = new User(1,"testnetid","testpassword","first","last","testusername",1234,1234,1234,500.0);
 		when(repo.findByNetid("testnetid")).thenReturn(user);
 		
 		
@@ -45,7 +45,7 @@ public class UserMockitoTest {
 	@Test
 	public void signUpExistingUserTest()
 	{
-		User user = new User(1,"testnetid","testpassword","first","last","testusername",1234,1234,1234);
+		User user = new User(1,"testnetid","testpassword","first","last","testusername",1234,1234,1234,500.0);
 		when(repo.findByNetid("testnetid")).thenReturn(user);
 		
 		assertEquals("user_already_exists", userService.signUpUserService(user));

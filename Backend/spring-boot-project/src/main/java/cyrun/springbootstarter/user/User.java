@@ -19,13 +19,14 @@ public class User {
 	private Integer routing_number;
 	private Integer account_number;
 	private Integer isu_id;
+	private Double balance;
 
 	public User() {
 
 	}
 
 	public User(Integer user_id, String netid, String password, String first_name, String last_name, String username,
-			Integer routing_number, Integer account_number, Integer isu_id) {
+			Integer routing_number, Integer account_number, Integer isu_id, Double balance) {
 		this.user_id = user_id;
 		this.netid = netid;
 		this.password = password;
@@ -35,6 +36,15 @@ public class User {
 		this.routing_number = routing_number;
 		this.account_number = account_number;
 		this.isu_id = isu_id;
+		this.balance = balance;
+	}
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
 	}
 
 	public int getUser_id() {
