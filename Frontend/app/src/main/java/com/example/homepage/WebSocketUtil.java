@@ -3,6 +3,8 @@ package com.example.homepage;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketFactory;
+import com.util.GlobalAppInfo;
+import com.util.VolleyCallback;
 
 import java.io.IOException;
 
