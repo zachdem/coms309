@@ -3,8 +3,6 @@ package com.example.homepage;
 public class RunnersOrders {
 
 
-
-
     public String firstname;
 
     public String lastname;
@@ -15,13 +13,16 @@ public class RunnersOrders {
 
     public String Finaltotal;
 
-    public RunnersOrders(String firstname, String lastname, String locationName, String item_name, String finalTotal) {
+    public String userNetID;
+
+    public RunnersOrders(String firstname, String lastname, String locationName, String item_name, String finalTotal, String netid) {
 
         this.firstname = firstname;
         this.lastname = lastname;
         this.LocationName = locationName;
         this.item_name = item_name;
         this.Finaltotal = finalTotal;
+        this.userNetID = netid;
 
     }
 

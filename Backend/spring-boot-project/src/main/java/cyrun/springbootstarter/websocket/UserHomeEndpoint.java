@@ -23,55 +23,48 @@ import cyrun.springbootstarter.order.OrderService;
 @Component
 public class UserHomeEndpoint {
 
-	private static OrderService orderService;
-
-	@Autowired
-	public void setUserService(OrderService orderServ) {
-		orderService = orderServ;
-	}
-
-	private static HashMap<Session, String> connectedUsers;
+	private static HashMap<String, UserSession> connectedUsers;
 
 	public UserHomeEndpoint() {
-		connectedUsers = new HashMap<Session, String>();
+		connectedUsers = new HashMap<String, UserSession>();
 	}
 
 	@OnOpen
 	public void onOpen(Session session) throws IOException {
-		session.getBasicRemote().sendText("Connected");
 	}
 
 	@OnMessage
 	public void onMessage(Session session, String message) throws IOException {
 		System.out.println("Adding netid");
 		// First message sent will be netid
-		session.getBasicRemote().sendText("Adding Entry");
-		connectedUsers.put(session, message);
-		this.sendMessage();
+		connectedUsers.put(session.getId(), new UserSession(session, message));
 	}
 
 	@OnClose
 	public void onClose(Session session) throws IOException {
 		// Remove session from the List
-		connectedUsers.remove(session);
+		connectedUsers.remove(session.getId());
 	}
 
 	@OnError
 	public void onError(Throwable throwable) {
 	}
 
-	@Scheduled(fixedDelay = 1000)
+/*	@Scheduled(fixedDelay = 1000)
 	public void pushUpdatedOrders() throws IOException {
 		this.sendMessage();
 		
-	}
+	}*/
 
-	public void sendMessage() throws IOException {
+	public void sendMessage(String message, String netid) throws IOException {
+		
+		for (Map.Entry<String, UserSession> connectedUser : connectedUsers.entrySet()) {
+			System.out.println("Sending via socket 2");
 
-		for (Map.Entry<Session, String> connectedUser : connectedUsers.entrySet()) {
-			Gson g = new Gson();
-			String userOrders = g.toJson(orderService.getUserOrders(connectedUser.getValue()));
-			connectedUser.getKey().getBasicRemote().sendText(userOrders);
+			if(connectedUser.getValue().getNetid().equals(netid))
+			{
+				connectedUser.getValue().getSession().getBasicRemote().sendText(message);
+			}
 		}
 
 	}

@@ -80,9 +80,9 @@ public class OrderServiceTest {
 		List<OrderInformation> orderList = new ArrayList<>();
 
 		// Add some active orders
-		OrderInformation order1 = new OrderInformation(1, "user1_first", "user1_last", "Hamburger", 12.0, "Clydes", null, null, null);
-		OrderInformation order2 = new OrderInformation(2, "user2_first", "user2_last", "Salad", 9.5, "Clydes", null, null, null);
-		OrderInformation order3 = new OrderInformation(3, "user3_first", "user3_last", "Chicken Strips", 10.0, "Clydes", null, null, null);
+		OrderInformation order1 = new OrderInformation(1, "user1_first", "user1_last", "Hamburger", 12.0, "Clydes", null, null, null, null);
+		OrderInformation order2 = new OrderInformation(2, "user2_first", "user2_last", "Salad", 9.5, "Clydes", null, null, null, null);
+		OrderInformation order3 = new OrderInformation(3, "user3_first", "user3_last", "Chicken Strips", 10.0, "Clydes", null, null, null, null);
 		orderList.add(order1);
 		orderList.add(order2);
 		orderList.add(order3);

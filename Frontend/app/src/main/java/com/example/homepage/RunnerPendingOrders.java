@@ -88,6 +88,7 @@ public class RunnerPendingOrders extends AppCompatActivity {
                 intent.putExtra("item_name", map.get(OrderNum).item_name);
                 intent.putExtra("FinalTotal", map.get(OrderNum).Finaltotal);
                 intent.putExtra("Location", map.get(OrderNum).LocationName);
+                intent.putExtra("user_netid", map.get(OrderNum).userNetID);
                 startActivity(intent);
             }
         });
@@ -114,8 +115,9 @@ public class RunnerPendingOrders extends AppCompatActivity {
                     String line1 = object.optString("item_price");
                     String line3 = object.optString("last_name");
                     String line4 = object.optString("item_name");
+                    String netid = object.optString("user_netid");
 
-                    map.put(line5, new RunnersOrders(line2, line3, line, line4, line1));
+                    map.put(line5, new RunnersOrders(line2, line3, line, line4, line1, netid));
 
                     String format = String.format("Order: %1$s Name: %2$s Location: %3$s", line5, line2, line);
                     if(line != null){
