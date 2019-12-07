@@ -39,7 +39,7 @@ public class OrderService {
 		String item_name = orderItem.getString("item_name");
 		String location_name = orderItem.getString("location_name");
 		String netid = orderItem.getString("netid");
-		Double total = orderItem.getDouble("total");
+		Double total = orderItem.getDouble("item_price");
 		
 		orderRepository.sendOrderItem(item_name, location_name, netid);
 		userService.deductUserBalance(total, netid);
