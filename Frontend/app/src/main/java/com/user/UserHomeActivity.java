@@ -1,4 +1,4 @@
-package com.example.homepage;
+package com.user;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,7 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.neovisionaries.ws.client.WebSocket;
+
+import com.util.GlobalAppInfo;
+import com.util.HttpRequests;
+import com.example.homepage.R;
+import com.util.VolleyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -145,9 +149,7 @@ public class UserHomeActivity extends AppCompatActivity {
         WebSocketUtil.disconnectWebSocket();
         //Disconnect websocket
     }
-
-
-    public void openLocationsActivity() {
+    private void openLocationsActivity() {
         Intent intent = new Intent(this, LocationsMenuActivity.class);
         startActivity(intent);
     }

@@ -1,4 +1,4 @@
-package com.example.homepage;
+package com.user;
 
 
 public class User {
