@@ -57,6 +57,7 @@ public class UserService {
 	
 	public void deductUserBalance(Double amount, String netid) {
 		userRepository.deductBalance(amount, netid);
+		
 	}
 
 }
