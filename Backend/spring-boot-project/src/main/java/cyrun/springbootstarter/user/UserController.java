@@ -39,7 +39,7 @@ public class UserController {
 		return userService.getUserInfoService(netid);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/user/{netid}")
+	@RequestMapping(method = RequestMethod.POST, value = "/user/update")
 	public String updateInfo(@RequestBody User user) {
 		return userService.updateSettings(user);
 	}
