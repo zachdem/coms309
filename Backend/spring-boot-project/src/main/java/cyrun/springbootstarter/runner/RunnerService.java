@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import cyrun.springbootstarter.runner.Runner;
 import cyrun.springbootstarter.runner.RunnerRepository;
+import cyrun.springbootstarter.user.User;
 
 @Service
 public class RunnerService {
@@ -55,5 +56,9 @@ public class RunnerService {
 		}
 		
 	}
+	
+	public Runner getRunnerInfo(String netid) {
+		return runnerRepository.findByNetid(netid);
+}
 
 }

@@ -12,6 +12,7 @@ public interface RunnerRepository extends JpaRepository<Runner, Integer> {
 			+ " isu_id, password, routing_number, account_number, netid FROM runners_table WHERE netid = ?1", nativeQuery = true)
 	Runner findByNetid(String netid);
 	
+	
 	@Modifying
 	@Transactional
 	@Query(value = "INSERT INTO runners_table (first_name, last_name, username, password, isu_id, routing_number, account_number, netid) "
