@@ -1,8 +1,12 @@
 package cyrun.springbootstarter.user;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import cyrun.springbootstarter.menu.Location;
 
 @Service
 public class UserService {
@@ -57,7 +61,24 @@ public class UserService {
 	
 	public void deductUserBalance(Double amount, String netid) {
 		userRepository.deductBalance(amount, netid);
-		
 	}
-
+	
+	public User getUserInfo(String netid) {
+			return userRepository.findByNetid(netid);
+	}
+	
+	public List<User> getUserInfoService(String netid)
+	{
+		return userRepository.getUserList(netid);
+	}
+	
+	public String updateSettings(User user) {
+		if(verifyUserExists(user)) {
+			userRepository.updateSettings(user.getNetid(), user.getPassword(), user.getRouting_number(),user.getAccount_number());
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
 }

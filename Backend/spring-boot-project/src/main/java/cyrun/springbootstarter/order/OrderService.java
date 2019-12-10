@@ -99,7 +99,6 @@ public class OrderService {
         obj.put("runner_first_name", orderInfo.getRunner_first_name());
         obj.put("runner_last_name", orderInfo.getRunner_last_name());
         obj.put("pending_order", orderInfo.getPending_order());
-        obj.put("user_netid", orderInfo.getUser_netid());
 		return obj.toString();
 	}
 
