@@ -118,31 +118,5 @@ public class OrderServiceTest {
 	    //Call get active orders and make sure it returns the same string
 	    assertEquals(arr.toString(), orderService.getActiveOrders());
 	}
-	
-	/**
-	 * Test that verifies the getSingleOrderInformation function in OrderService
-	 */
-	@Test
-	public void getSingleOrderTest() {
-		OrderInformation orderInfo = new OrderInformation(1, "user1_first", "user1_last", "Hamburger", 12.0, "Clydes", "Test", "Runner", "No", "test_netid");
-		when(orderInfoRepo.getSingleOrderInformation(1)).thenReturn(orderInfo);
-		
-		System.out.println(orderInfo.getUser_netid());
-		String orderString = orderService.getSingleOrderInformation(1);
-		System.out.println(orderString);
-		JSONObject obj = new JSONObject(orderString);
-	
-		assertEquals((int)orderInfo.getOrder_id(),obj.getInt("order_id"));
-		assertEquals(orderInfo.getFirst_name(),obj.getString("first_name"));
-		assertEquals(orderInfo.getLast_name(),obj.getString("last_name"));
-		assertEquals(orderInfo.getItem_name(),obj.getString("item_name"));
-		assertEquals(orderInfo.getItem_price(),obj.getDouble("item_price") , 0);
-		assertEquals(orderInfo.getLocation_name(),obj.getString("location_name"));
-		assertEquals(orderInfo.getRunner_first_name(),obj.getString("runner_first_name"));
-		assertEquals(orderInfo.getRunner_last_name(),obj.getString("runner_last_name"));
-		assertEquals(orderInfo.getPending_order(),obj.getString("pending_order"));
-		assertEquals(orderInfo.getUser_netid(),obj.getString("user_netid"));
-
-	}
 
 }
