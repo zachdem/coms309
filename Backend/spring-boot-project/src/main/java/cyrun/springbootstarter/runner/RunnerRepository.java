@@ -25,7 +25,7 @@ public interface RunnerRepository extends JpaRepository<Runner, Integer> {
 			Integer routing_number, Integer account_number, String netid);
 	
 	@Query(value = "SELECT user_id, netid, password, first_name, last_name, "
-			+ "username, routing_number, account_number, isu_id, balance FROM runners_table WHERE netid = ?1", nativeQuery = true)
+			+ "username, routing_number, account_number, isu_id FROM runners_table WHERE netid = ?1", nativeQuery = true)
 	List<Runner> getRunnerList(String netid);
 }
 
