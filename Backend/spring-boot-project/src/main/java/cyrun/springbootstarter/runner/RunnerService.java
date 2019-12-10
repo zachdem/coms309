@@ -1,5 +1,7 @@
 package cyrun.springbootstarter.runner;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,8 +59,9 @@ public class RunnerService {
 		
 	}
 	
-	public Runner getRunnerInfo(String netid) {
-		return runnerRepository.findByNetid(netid);
-}
+	public List<Runner> getRunnerInfoService(String netid)
+	{
+		return runnerRepository.getRunnerList(netid);
+	}
 
 }
