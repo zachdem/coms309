@@ -1,15 +1,10 @@
 package cyrun.springbootstarter.runner;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import cyrun.springbootstarter.user.User;
 
 @RestController
 public class RunnerController {
@@ -29,16 +24,5 @@ public class RunnerController {
 		
 		return runnerService.signUpRunnerService(runner);
 		
-	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "/runner/{netid}")
-	public List<Runner> getInfo(@PathVariable String netid) {
-		return runnerService.getRunnerInfoService(netid);
-
-	}
-	
-	@RequestMapping(method = RequestMethod.POST, value = "/runner/update")
-	public String updateInfo(@RequestBody Runner runner) {
-		return runnerService.updateSettings(runner);
 	}
 }

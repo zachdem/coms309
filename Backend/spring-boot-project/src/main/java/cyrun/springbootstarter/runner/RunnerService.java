@@ -1,13 +1,10 @@
 package cyrun.springbootstarter.runner;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cyrun.springbootstarter.runner.Runner;
 import cyrun.springbootstarter.runner.RunnerRepository;
-import cyrun.springbootstarter.user.User;
 
 @Service
 public class RunnerService {
@@ -57,20 +54,6 @@ public class RunnerService {
 			return false;
 		}
 		
-	}
-	
-	public List<Runner> getRunnerInfoService(String netid)
-	{
-		return runnerRepository.getRunnerList(netid);
-	}
-	
-	public String updateSettings(Runner runner) {
-		if(verifyRunnerExists(runner)) {
-			runnerRepository.updateSettings(runner.getNetid(), runner.getPassword(), runner.getRouting_number(),runner.getAccount_number());
-			return "success";
-		} else {
-			return "fail";
-		}
 	}
 
 }
