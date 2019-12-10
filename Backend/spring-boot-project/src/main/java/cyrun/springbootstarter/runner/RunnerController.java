@@ -38,7 +38,7 @@ public class RunnerController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/runner/{netid}")
-	public String updateInfo(@RequestBody Runner runner) {
+	public String updateInfo(@RequestBody @PathVariable Runner runner) {
 		return runnerService.updateSettings(runner);
 	}
 }
