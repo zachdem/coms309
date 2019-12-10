@@ -27,6 +27,12 @@ public interface RunnerRepository extends JpaRepository<Runner, Integer> {
 	@Query(value = "SELECT runner_id, netid, password, first_name, last_name, "
 			+ "username, routing_number, account_number, isu_id FROM runners_table WHERE netid = ?1", nativeQuery = true)
 	List<Runner> getRunnerList(String netid);
+	
+	@Modifying
+	@Transactional 
+	@Query(value = "UPDATE runners_table SET password = ?2, routing_number = ?3, account_number = ?4 " +
+	"WHERE netid = ?1", nativeQuery = true)
+	void updateSettings(String netid, String password, Integer routing_number, Integer account_number);
 }
 
 

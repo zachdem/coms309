@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import cyrun.springbootstarter.user.User;
+
 @RestController
 public class RunnerController {
 	
@@ -33,5 +35,10 @@ public class RunnerController {
 	public List<Runner> getInfo(@PathVariable String netid) {
 		return runnerService.getRunnerInfoService(netid);
 
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/runner/{netid}")
+	public String updateInfo(@RequestBody Runner runner) {
+		return runnerService.updateSettings(runner);
 	}
 }

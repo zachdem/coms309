@@ -15,6 +15,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(value = "SELECT user_id, netid, password, first_name, last_name, "
 			+ "username, routing_number, account_number, isu_id, balance FROM users_table WHERE netid = ?1", nativeQuery = true)
 	User findByNetid(String netid);
+	
+	@Query(value = "SELECT user_id, netid, password, first_name, last_name, "
+			+ "username, routing_number, account_number, isu_id, balance FROM users_table WHERE netid = ?1", nativeQuery = true)
+	List<User> getUserList(String netid);
 
 	@Modifying
 	@Transactional
@@ -36,7 +40,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	"WHERE netid = ?1", nativeQuery = true)
 	void updateSettings(String netid, String password, Integer routing_number, Integer account_number);
 	
-	@Query(value = "SELECT user_id, netid, password, first_name, last_name, "
-			+ "username, routing_number, account_number, isu_id, balance FROM users_table WHERE netid = ?1", nativeQuery = true)
-	List<User> getUserList(String netid);
 }

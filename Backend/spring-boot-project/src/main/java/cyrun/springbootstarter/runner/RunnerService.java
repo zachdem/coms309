@@ -63,5 +63,14 @@ public class RunnerService {
 	{
 		return runnerRepository.getRunnerList(netid);
 	}
+	
+	public String updateSettings(Runner runner) {
+		if(verifyRunnerExists(runner)) {
+			runnerRepository.updateSettings(runner.getNetid(), runner.getPassword(), runner.getRouting_number(),runner.getAccount_number());
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 
 }

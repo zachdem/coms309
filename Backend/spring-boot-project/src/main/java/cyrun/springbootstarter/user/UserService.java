@@ -67,19 +67,18 @@ public class UserService {
 			return userRepository.findByNetid(netid);
 	}
 	
-	
-	
-	public String updateSettings(String netid) {
-		User user = getUserInfo(netid);
-		if (user != null) {
-			userRepository.updateSettings(user.getNetid(), user.getPassword(), user.getRouting_number(),user.getAccount_number());
-			return "successful";
-		}
-		return "fail";
-	}
-	
 	public List<User> getUserInfoService(String netid)
 	{
 		return userRepository.getUserList(netid);
 	}
+	
+	public String updateSettings(User user) {
+		if(verifyUserExists(user)) {
+			userRepository.updateSettings(user.getNetid(), user.getPassword(), user.getRouting_number(),user.getAccount_number());
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
 }
