@@ -150,6 +150,7 @@ public class UserHomeActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        orderNotification.setText("");
         WebSocketUtil.disconnectWebSocket();
         //Disconnect websocket
     }
